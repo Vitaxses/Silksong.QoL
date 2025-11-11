@@ -1,16 +1,39 @@
+using HutongGames.PlayMaker;
+using HutongGames.PlayMaker.Actions;
+
 namespace QoL.FSMEdits;
 
 internal static class FasterBossAndNpc
 {
-    internal static void FasterBoss(PlayMakerFSM fsm)
+    internal static void FasterLace1(PlayMakerFSM fsm)
     {
         if (!Configs.FasterBossLoad.Value)
             return;
 
-        if (fsm is not { FsmName: "Control", name: "Lace Boss1" })
+        if (fsm is not { FsmName: "Control", gameObject: { name: "Lace Boss1", scene.name: "Bone_East_12" } })
             return;
 
-		fsm.ChangeTransition("Encountered?", "MEET", "Refight");
+        fsm.ChangeTransition("Encountered?", "MEET", "Refight");
+    }
+
+    internal static void FasterLostLace(PlayMakerFSM fsm) {
+        if (!Configs.FasterBossLoad.Value)
+            return;
+
+        if (fsm is not { FsmName: "Control", gameObject: { name: "Intro Control", scene.name: "Abyss_Cocoon" } })
+            return;
+
+        fsm.ChangeTransition("Check Encountered", FsmEvent.Finished.Name, "ENCOUNTERED");
+        
+        FsmState stateEmerge = fsm.GetState("Lace Re-emerge")!;
+        const float SPEED_MULT = 3f;
+        stateEmerge.GetAction<ActivateGameObject>(10)!
+            .gameObject.GameObject.Value.GetComponent<Animator>()
+            .speed = SPEED_MULT;
+        stateEmerge.GetAction<Wait>(11)!.time.Value /= SPEED_MULT;
+
+        fsm.DisableAction("Lace Roar", 4); // Wait
+        fsm.DisableAction("Silk Scream", 1); // Wait
     }
 
     internal static void FasterNPC(PlayMakerFSM fsm)
