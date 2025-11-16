@@ -9,8 +9,8 @@ internal static class PlayMakerFSMPatch
     // Feel free to ignore nullity checks as they will be caught here
     private static readonly Action<PlayMakerFSM>[] edits =
     [
-        FasterBossAndNpc.FasterBoss,
-        FasterBossAndNpc.FasterNPC,
+        FasterBoss.FasterBOSS,
+        FasterNpc.FasterNPC,
         Bellway.BellBeast,
         Bellway.Toll,
         Ventrica.Tube,
@@ -19,7 +19,8 @@ internal static class PlayMakerFSMPatch
         BeastlingCall.SilkSpecials,
         BeastlingCall.Beastlings,
         BeastlingCall.Needolin,
-        Cutscene.LastDive
+        Cutscene.LastDive,
+        ToolPatch.VoltVessel
     ];
 
     [HarmonyPostfix]

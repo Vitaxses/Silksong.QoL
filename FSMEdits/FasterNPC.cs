@@ -1,17 +1,7 @@
 namespace QoL.FSMEdits;
 
-internal static class FasterBossAndNpc
+internal static class FasterNpc
 {
-    internal static void FasterBoss(PlayMakerFSM fsm)
-    {
-        if (!Configs.FasterBossLoad.Value)
-            return;
-
-        if (fsm is not { FsmName: "Control", name: "Lace Boss1" })
-            return;
-
-		fsm.ChangeTransition("Encountered?", "MEET", "Refight");
-    }
 
     internal static void FasterNPC(PlayMakerFSM fsm)
     {

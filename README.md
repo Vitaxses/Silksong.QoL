@@ -27,8 +27,8 @@ A Quality of Life mod for Hollow Knight: Silksong
 - Faster Lifts
 - Skip Cutscenes Faster
 - Skip Weakness Scenes
-- Small Tweaks (Fixing Camera Pan Issue In Putrefied Ducts)
-- Old Patch (Patches in Old Skips)
+- Cloakless Clawline
+- Old Volt Vessels
 - No Hard Falls
 
 ## Installation

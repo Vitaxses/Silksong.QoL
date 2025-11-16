@@ -19,41 +19,44 @@ public static class Configs
     public static ConfigEntry<bool> FasterNPC { get; private set; } = null!;
     public static ConfigEntry<bool> FasterBossLoad { get; private set; } = null!;
 
+    public static ConfigEntry<bool> CloaklessClawline { get; private set; } = null!;
+    public static ConfigEntry<bool> OldVoltVessels { get; private set; } = null!;
+
     public static ConfigEntry<bool> InstantLevers { get; private set; } = null!;
     public static ConfigEntry<bool> FasterLifts { get; private set; } = null!;
     public static ConfigEntry<bool> InstantText { get; private set; } = null!;
     public static ConfigEntry<bool> SkipCutscene { get; private set; } = null!;
     public static ConfigEntry<bool> SkipWeakness { get; private set; } = null!;
-    public static ConfigEntry<bool> SmallTweaks { get; private set; } = null!;
-    public static ConfigEntry<bool> OldPatch { get; private set; } = null!;
     public static ConfigEntry<bool> FastUI { get; private set; } = null!;
     public static ConfigEntry<bool> NoHardFalls { get; private set; } = null!;
 
     internal static void Bind(ConfigFile config)
     {
-        FleaTracked = config.Bind("Tracker Settings", "Count Fleas", true, "Counts Saved Fleas");
+        FleaTracked = config.Bind("Tracker Settings", "Count Fleas", true, "Counts saved fleas.");
 
-        FasterBellwayTravel = config.Bind("Bellway Settings", "Faster Bellway Travel Animation", true, "Speed Up Arrival And Departure Animations Of Bellway Travel");
-        FasterBellwayBuy = config.Bind("Bellway Settings", "Faster Bellway Purchase", true, "Speed Up The Animation When Buying Bellway Stations And Calls Bell Beast Afterwards");
-        NoBellBeastSleep = config.Bind("Bellway Settings", "BellBeast Always Awake", true, "Make The Bell Beast Be Always Awake");
-        BellBeastFreeWill = config.Bind("Bellway Settings", "BellBeast Has Free Will", false, "Make Bell Beast Be Always Ready At Your Location");
-        FasterBeastlingCall = config.Bind("Bellway Settings", "Faster Beastling Call", true, "Speed Up Beastling Call Performance And Travelling");
-        SkipBeastlingCallPerformance = config.Bind("Bellway Settings", "Skip Beastling Call Performance", false, "Skip Beastling Call Performance Entirely");
+        FasterBellwayTravel = config.Bind("Bellway Settings", "Faster Bellway Travel Animation", true, "Speeds up arrival and departure animations for Bellway travel.");
+        FasterBellwayBuy = config.Bind("Bellway Settings", "Faster Bellway Purchase", true, "Speeds up the animation when buying Bellway stations and calls the Bell Beast afterwards.");
+        NoBellBeastSleep = config.Bind("Bellway Settings", "BellBeast Always Awake", true, "Keeps the Bell Beast always awake.");
+        BellBeastFreeWill = config.Bind("Bellway Settings", "BellBeast Has Free Will", false, "Makes the Bell Beast always ready at your location.");
+        
+        FasterBeastlingCall = config.Bind("Bellway Settings", "Faster Beastling Call", true, "Speeds up Beastling call performance and travel.");
+        SkipBeastlingCallPerformance = config.Bind("Bellway Settings", "Skip Beastling Call Performance", false, "Skips the Beastling call performance entirely.");
 
-        FasterVentricaTravel = config.Bind("Ventrica Settings", "Faster Ventrica Travel Animation", true, "Speed Up Arrival And Departure Animations Of Ventrica Travel");
-        FasterVentricaBuy = config.Bind("Ventrica Settings", "Faster Ventrica Purchase", true, "Speed Up The Animation When Buying Ventrica Stations");
+        FasterVentricaTravel = config.Bind("Ventrica Settings", "Faster Ventrica Travel Animation", true, "Speeds up arrival and departure animations for Ventrica travel.");
+        FasterVentricaBuy = config.Bind("Ventrica Settings", "Faster Ventrica Purchase", true, "Speeds up the animation when buying Ventrica stations.");
 
-        FasterNPC = config.Bind("NPC Settings", "Faster Npc", true, "Removes Some Dialogue For Introduction Of An NPC");
-        FasterBossLoad = config.Bind("NPC Settings", "(BETA) Faster Boss Start", false, "(BETA) Remove's Dialogue From Bosses");
+        FasterNPC = config.Bind("NPC Settings", "Faster NPC", true, "Removes some introductory dialogue for NPCs.");
+        FasterBossLoad = config.Bind("NPC Settings", "(Experimental) Faster Boss Start", false, "Removes first-time events for bosses.");
+        
+        CloaklessClawline = config.Bind("Old Patch Settings", "Cloakless Clawline", false, "Wall requiring the Drifter's Cloak is now clingable.");
+        OldVoltVessels = config.Bind("Old Patch Settings", "Old Volt Vessels", false);
 
-        InstantLevers = config.Bind("Global Settings", "Instant Levers", true, "Removes The Delay When Hitting A Lever");
-        FasterLifts = config.Bind("Global Settings", "Faster Lifts", true, "Lifts Now Have Super Speed");
-        InstantText = config.Bind("Global Settings", "Instant Text", true, "Makes the Scroll Speed Of Text and Popup Speed Instant");
-        SkipCutscene = config.Bind("Global Settings", "Skip Cutscenes Faster", true, "Skips Cutscenes Faster");
-        SkipWeakness = config.Bind("Global Settings", "Skip Weakness", true, "Removes Weakness scenes in Moss Grotto And Cogwork Core");
-        SmallTweaks = config.Bind("Global Settings", "Small Tweaks", true, "Fixes Camera Issue In Putrefied Ducts");
-        OldPatch = config.Bind("Global Settings", "Old patch", false, "Patches In Old Features/Skips");
-        FastUI = config.Bind("Global Settings", "Fast Menu", true, "Removes The Fade Delay");
-        NoHardFalls = config.Bind("Global Settings", "No Hard Falls", false, "No More Broken Angles");
+        InstantLevers = config.Bind("Global Settings", "Instant Levers", true, "Removes the delay when hitting a lever.");
+        FasterLifts = config.Bind("Global Settings", "Faster Lifts", true, "Makes lifts extremely fast.");
+        InstantText = config.Bind("Global Settings", "Instant Text", true, "Makes text scroll speed and popup speed instant.");
+        SkipCutscene = config.Bind("Global Settings", "Skip Cutscenes Faster", true, "Skips cutscenes faster.");
+        SkipWeakness = config.Bind("Global Settings", "Skip Weakness", true, "Removes weakness scenes in Moss Grotto and Cogwork Core.");
+        FastUI = config.Bind("Global Settings", "Fast Menu", true, "Removes the fade delays.");
+        NoHardFalls = config.Bind("Global Settings", "No Hard Falls", false, "No more broken bones.");
     }
 }

@@ -14,34 +14,29 @@ internal static class OnSceneLoadPatch
             PlayerData.instance.metMapper = true;
 
         SkipWeakness(scene.name);
+        OldPatch();
+    }
+
+    private static void OldPatch()
+    {
+        if (!Configs.CloaklessClawline.Value && !Configs.OldVoltVessels.Value)
+            return;
 
         StartCoroutine(() =>
         {
             string sceneName = GameManager.instance.sceneName;
-            OldPatch(sceneName);
-            SmallTweaks(sceneName);
-        }, 0.3f);
-    }
-
-    private static void SmallTweaks(string sceneName)
-    {
-        if (!Configs.SmallTweaks.Value || sceneName != "Aqueduct_01")
-            return;
-
-        UObject.Destroy(GameObject.Find("Camera Locks"));
-    }
-
-    private static void OldPatch(string sceneName)
-    {
-        if (!Configs.OldPatch.Value)
-            return;
-
-        if (sceneName == "Under_17")
-        {
-            GameObject obj = GameObject.Find("terrain collider (15)");
-            obj.transform.position = new Vector3(12.25f, 7.64f, 0f);
-            UObject.Destroy(obj.GetComponent<NonSlider>());
-        }
+            
+            if (Configs.CloaklessClawline.Value && sceneName == "Under_17")
+            {
+                GameObject obj = GameObject.Find("terrain collider (15)");
+                obj.transform.position = new Vector3(12.22f, 7.64f, 0f);
+                UObject.Destroy(obj.GetComponent<NonSlider>());
+            } else if (Configs.OldVoltVessels.Value && sceneName == "Aqueduct_04")
+            {
+                BoxCollider2D rangeCollider = GameObject.Find("drop_planks").transform.GetChild(3).GetComponent<BoxCollider2D>();
+                rangeCollider.size = new(rangeCollider.size.x, 40f);
+            }
+        }, 0.5f);
     }
 
     private static void SkipWeakness(string sceneName)
