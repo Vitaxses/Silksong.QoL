@@ -20,7 +20,9 @@ internal static class PlayMakerFSMPatch
         BeastlingCall.Beastlings,
         BeastlingCall.Needolin,
         Cutscene.LastDive,
-        ToolPatch.VoltVessel
+        ToolPatch.VoltVessel,
+        ToolPatch.Scuttlebrace,
+        Abilities.NeedleStrike
     ];
 
     [HarmonyPostfix]

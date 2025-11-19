@@ -29,6 +29,8 @@ A Quality of Life mod for Hollow Knight: Silksong
 - Skip Weakness Scenes
 - Cloakless Clawline
 - Old Volt Vessels
+- Old Scuttlebrace
+- Beast Boosts
 - No Hard Falls
 
 ## Installation

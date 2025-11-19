@@ -21,6 +21,8 @@ public static class Configs
 
     public static ConfigEntry<bool> CloaklessClawline { get; private set; } = null!;
     public static ConfigEntry<bool> OldVoltVessels { get; private set; } = null!;
+    public static ConfigEntry<bool> BeastBoosts { get; private set; } = null!;
+    public static ConfigEntry<bool> OldScuttlebrace { get; private set; } = null!;
 
     public static ConfigEntry<bool> InstantLevers { get; private set; } = null!;
     public static ConfigEntry<bool> FasterLifts { get; private set; } = null!;
@@ -49,7 +51,9 @@ public static class Configs
         FasterBossLoad = config.Bind("NPC Settings", "(Experimental) Faster Boss Start", false, "Removes first-time events for bosses.");
         
         CloaklessClawline = config.Bind("Old Patch Settings", "Cloakless Clawline", false, "Wall requiring the Drifter's Cloak is now clingable.");
-        OldVoltVessels = config.Bind("Old Patch Settings", "Old Volt Vessels", false);
+        OldVoltVessels = config.Bind("Old Patch Settings", "Old Volt Vessels", false, "");
+        BeastBoosts = config.Bind("Old Patch Settings", "Beast Boosts", false, "");
+        OldScuttlebrace = config.Bind("Old Patch Settings", "Old Scuttlebrace", false , "");
 
         InstantLevers = config.Bind("Global Settings", "Instant Levers", true, "Removes the delay when hitting a lever.");
         FasterLifts = config.Bind("Global Settings", "Faster Lifts", true, "Makes lifts extremely fast.");
