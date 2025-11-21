@@ -1,3 +1,6 @@
+using HutongGames.PlayMaker;
+using HutongGames.PlayMaker.Actions;
+
 namespace QoL.FSMEdits;
 
 public static class FasterBoss
@@ -7,6 +10,12 @@ public static class FasterBoss
             return;
         
         FasterLace(fsm);
+        FasterBellBeast(fsm);
+        FasterMossMother(fsm);
+        FasterGMS(fsm);
+        FasterMoorwing(fsm);
+        FasterTrobbio(fsm);
+        FasterWidow(fsm);
     }
 
     internal static void FasterLace(PlayMakerFSM fsm)
@@ -14,6 +23,88 @@ public static class FasterBoss
         if (fsm is not { FsmName: "Control", name: "Lace Boss1" })
             return;
 
+        Plugin.Logger.LogDebug("Modifying Lace1 Boss FSM");
+
         fsm.ChangeTransition("Encountered?", "MEET", "Refight");
+    }
+
+    internal static void FasterBellBeast(PlayMakerFSM fsm) 
+    {
+        if (fsm is not { FsmName: "Return State", name: "Boss Scene", gameObject.scene.name: "Bone_05_boss" } || !ToolItemManager.IsToolEquipped("Silk Spear"))
+            return;
+
+        Plugin.Logger.LogDebug("Modifying BellBeast Boss FSM");
+
+        fsm.ChangeTransition("Init", "FINISHED", "Set Return State");
+    }
+
+    internal static void FasterMossMother(PlayMakerFSM fsm) 
+    {
+        if (fsm is not { FsmName: "Control", name: "Mossbone Mother" })
+            return;
+
+        Plugin.Logger.LogDebug("Modifying MossMother Boss FSM");
+
+        fsm.gameObject.transform.GetChild(12).position = new Vector3(65.7739f, 15.14f, 0.0062f);
+    }
+
+    internal static void FasterGMS(PlayMakerFSM fsm) 
+    {
+        if (fsm is not { FsmName: "First Challenge", name: "Intro Sequence", gameObject.scene.name: "Cradle_03" })
+            return;
+
+        Plugin.Logger.LogDebug("Modifying GMS Boss FSM");
+
+        fsm.ChangeTransition("Challenge Cam", "CHALLENGE", "Quick Start");
+    }
+    
+    internal static void FasterMoorwing(PlayMakerFSM fsm)
+    {
+        if (fsm is not { FsmName: "Control", name: "Vampire Gnat" })
+            return;
+            
+        Plugin.Logger.LogDebug("Modifying Moorwing Boss FSM");
+
+        fsm.GetState("Roar")!.RemoveFirstActionOfType<Wait>();
+    }
+    
+    internal static void FasterTrobbio(PlayMakerFSM fsm)
+    {
+        if (fsm is { FsmName: "Control", name: "Trobbio" })
+        {
+            Plugin.Logger.LogDebug("Modifying Trobbio Boss FSM");
+
+            fsm.ChangeTransition("Init", "FINISHED", "Wait Refight");
+            fsm.GetState("Start Pause")!.RemoveFirstActionOfType<Wait>();
+            fsm.ChangeTransition("Start Pause", "FINISHED", "Quick Entrance 1");
+        }
+
+        else if (fsm is { FsmName: "Control", name: "Tormented Trobbio" })
+        {
+            Plugin.Logger.LogDebug("Modifying TormentedTrobbio Boss FSM");
+            
+            fsm.ChangeTransition("State", "MEET", "Start Pause");
+            FsmState TTState = fsm.GetState("State")!;
+            TTState.RemoveFirstActionOfType<GetPlayerDataBool>();
+            TTState.InsertMethod(1, (a) =>
+            {
+                fsm.FindBoolVariable("Encountered")!.RawValue = true;
+                a.Finish();
+            });
+
+            fsm.GetState("Trobbio Rise")!.GetFirstActionOfType<ConvertBoolToFloat>()!.trueValue = 0.2f;
+            fsm.GetState("Rise End")!.GetFirstActionOfType<ConvertBoolToFloat>()!.trueValue = 0f;
+        }
+    }
+    
+    internal static void FasterWidow(PlayMakerFSM fsm)
+    {
+        if (fsm is not { FsmName: "Control", name: "Boss Scene", gameObject.scene.name: "Belltown_Shrine" })
+            return;
+            
+        Plugin.Logger.LogDebug("Modifying Widow Boss FSM");
+
+        fsm.ChangeTransition("Check State", "UNENCOUNTERED", "State 1");
+        fsm.GetState("Spinner Look")!.RemoveFirstActionOfType<Wait>();
     }
 }
