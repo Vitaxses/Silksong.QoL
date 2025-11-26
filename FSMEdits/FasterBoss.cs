@@ -13,7 +13,6 @@ public static class FasterBoss
         FasterBellBeast(fsm);
         FasterMossMother(fsm);
         FasterGMS(fsm);
-        FasterMoorwing(fsm);
         FasterTrobbio(fsm);
         FasterWidow(fsm);
     }
@@ -56,16 +55,6 @@ public static class FasterBoss
         Plugin.Logger.LogDebug("Modifying GMS Boss FSM");
 
         fsm.ChangeTransition("Challenge Cam", "CHALLENGE", "Quick Start");
-    }
-    
-    internal static void FasterMoorwing(PlayMakerFSM fsm)
-    {
-        if (fsm is not { FsmName: "Control", name: "Vampire Gnat" })
-            return;
-            
-        Plugin.Logger.LogDebug("Modifying Moorwing Boss FSM");
-
-        fsm.GetState("Roar")!.RemoveFirstActionOfType<Wait>();
     }
     
     internal static void FasterTrobbio(PlayMakerFSM fsm)
