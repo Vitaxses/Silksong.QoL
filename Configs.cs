@@ -23,6 +23,7 @@ public static class Configs
     public static ConfigEntry<bool> OldVoltVessels { get; private set; } = null!;
     public static ConfigEntry<bool> BeastBoosts { get; private set; } = null!;
     public static ConfigEntry<bool> OldScuttlebrace { get; private set; } = null!;
+    public static ConfigEntry<bool> OldMist { get; private set; } = null!;
 
     public static ConfigEntry<bool> InstantLevers { get; private set; } = null!;
     public static ConfigEntry<bool> FasterLifts { get; private set; } = null!;
@@ -54,6 +55,7 @@ public static class Configs
         OldVoltVessels = config.Bind("Old Patch Settings", "Old Volt Vessels", false, "");
         BeastBoosts = config.Bind("Old Patch Settings", "Beast Boosts", false, "");
         OldScuttlebrace = config.Bind("Old Patch Settings", "Old Scuttlebrace", false , "");
+        OldMist = config.Bind("Old Patch Settings", "Old Mist", false , "");
 
         InstantLevers = config.Bind("Global Settings", "Instant Levers", true, "Removes the delay when hitting a lever.");
         FasterLifts = config.Bind("Global Settings", "Faster Lifts", true, "Makes lifts extremely fast.");

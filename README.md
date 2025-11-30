@@ -22,15 +22,19 @@ A Quality of Life mod for Hollow Knight: Silksong
 - Ventrica
   + Faster Travel Animations
   + Faster Ventrica Station Buy
-- Faster NPC Introductions
+- NPC
+  + Faster NPC Introduction
+  + Faster Boss Introduction
 - Instant Levers
 - Faster Lifts
 - Skip Cutscenes Faster
 - Skip Weakness Scenes
-- Cloakless Clawline
-- Old Volt Vessels
-- Old Scuttlebrace
-- Beast Boosts
+- Old Patch
+  + Cloakless Clawline
+  + Old Volt Vessels
+  + Old Scuttlebrace
+  + Old Mist
+  + Beast Boosts
 - No Hard Falls
 
 ## Installation
