@@ -1,5 +1,4 @@
-using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
+using PD = PlayerData;
 
 namespace QoL.FSMEdits;
 
@@ -15,6 +14,25 @@ public static class FasterBoss
         FasterGMS(fsm);
         FasterTrobbio(fsm);
         FasterWidow(fsm);
+        FasterLastJudge(fsm);
+    }
+
+    internal static void FasterLastJudge(PlayMakerFSM fsm)
+    {
+        if (fsm.FsmName != "Control" || fsm.gameObject.scene.name != "Coral_Judge_Arena")
+            return;
+        
+        if (fsm.name == "Boss Scene" && PD.instance.bellShrineBellhart && PD.instance.bellShrineBoneForest 
+            && PD.instance.bellShrineGreymoor && PD.instance.bellShrineShellwood && PD.instance.bellShrineWilds)
+            fsm.ChangeTransition("Init", "UNENCOUNTERED", "Encountered");
+        
+        else if (fsm.name == "Last Judge") {
+            fsm.GetState("Intro Roar")!.AddMethod((action) =>
+            {
+                PD.instance.encounteredLastJudge = true;
+                action.Finish();
+            });
+        }
     }
 
     internal static void FasterLace(PlayMakerFSM fsm)
