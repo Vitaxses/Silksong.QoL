@@ -9,9 +9,12 @@ A Quality of Life mod for Hollow Knight: Silksong
 
 ## Features
 
-- Saved Fleas Tracker
-- Faster Menu
-- Instant Text
+- Saved Fleas Counter
+- Fast Settings
+ + Faster Menu
+ + Instant Text
+ + Faster Lifts
+ + Soften Fast Settings
 - Bellway
   + Faster Travel Animations
   + Faster Bellway Station Buy
@@ -26,7 +29,6 @@ A Quality of Life mod for Hollow Knight: Silksong
   + Faster NPC Introduction
   + Faster Boss Introduction
 - Instant Levers
-- Faster Lifts
 - Skip Cutscenes Faster
 - Skip Weakness Scenes
 - Old Patch
@@ -35,7 +37,6 @@ A Quality of Life mod for Hollow Knight: Silksong
   + Old Scuttlebrace
   + Old Mist
   + Beast Boosts
-- No Hard Falls
 
 ## Installation
 
