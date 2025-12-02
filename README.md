@@ -4,14 +4,17 @@ A Quality of Life mod for Hollow Knight: Silksong
 
 ## Notes
 
-- This mod requires a mod called [FSM Util](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/Silksong_FsmUtil/) to work, if this is not installed the mod will not work!
+- This mod requires a mod called [FSM Util](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/FsmUtil/) to work, if this is not installed the mod will not work!
 - You can edit the config in `Hollow Knight Silksong/BepInEx/config/io.github.vitaxses.qol/` then restart the game for the changes to take effect.
 
 ## Features
 
-- Saved Fleas Tracker
-- Faster Menu
-- Instant Text
+- Saved Fleas Counter
+- Fast Settings
+  + Faster Menu
+  + Instant Text
+  + Faster Lifts
+  + Soften Fast Settings
 - Bellway
   + Faster Travel Animations
   + Faster Bellway Station Buy
@@ -22,16 +25,18 @@ A Quality of Life mod for Hollow Knight: Silksong
 - Ventrica
   + Faster Travel Animations
   + Faster Ventrica Station Buy
-- Faster NPC Introductions
+- NPC
+  + Faster NPC Introduction
+  + Faster Boss Introduction
 - Instant Levers
-- Faster Lifts
 - Skip Cutscenes Faster
 - Skip Weakness Scenes
-- Cloakless Clawline
-- Old Volt Vessels
-- Old Scuttlebrace
-- Beast Boosts
-- No Hard Falls
+- Old Patch
+  + Cloakless Clawline
+  + Old Volt Vessels
+  + Old Scuttlebrace
+  + Old Mist
+  + Beast Boosts
 
 ## Installation
 
@@ -41,7 +46,7 @@ Then start the game and close it so that a plugins folder is generated in the Be
 
 Download the latest [QoL.zip](https://github.com/Vitaxses/Silksong.QoL/releases) file.
 
-Download the latest [FsmUtil version](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/Silksong_FsmUtil/) file.
+Download the latest [FsmUtil version](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/FsmUtil/) file.
 
 Extract the Zip files to the generated plugins folder.
 
