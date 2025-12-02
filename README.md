@@ -11,10 +11,10 @@ A Quality of Life mod for Hollow Knight: Silksong
 
 - Saved Fleas Counter
 - Fast Settings
- + Faster Menu
- + Instant Text
- + Faster Lifts
- + Soften Fast Settings
+  + Faster Menu
+  + Instant Text
+  + Faster Lifts
+  + Soften Fast Settings
 - Bellway
   + Faster Travel Animations
   + Faster Bellway Station Buy
