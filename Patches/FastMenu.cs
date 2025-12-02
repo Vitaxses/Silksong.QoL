@@ -1,12 +1,25 @@
 namespace QoL.Patches;
 
-[HarmonyPatch(typeof(UIManager), nameof(UIManager.Start))]
+[HarmonyPatch(typeof(UIManager))]
 internal static class UIManagerPatch
 {
-    [HarmonyWrapSafe, HarmonyPostfix]
-    private static void Postfix(UIManager __instance)
+    [HarmonyPatch(nameof(UIManager.HideMenu))]
+    [HarmonyWrapSafe, HarmonyPrefix]
+    private static void HideMenu_Prefix()
     {
-        if (Configs.FastUI.Value)
-            __instance.MENU_FADE_SPEED = 100;
+        Adjust();
+    }
+
+    [HarmonyPatch(nameof(UIManager.Start))]
+    [HarmonyWrapSafe, HarmonyPostfix]
+    private static void Start_Postfix()
+    {
+        Adjust();
+    }
+
+    internal static void Adjust()
+    {
+        if (Configs.FastUI.Value) UIManager.instance.MENU_FADE_SPEED = Configs.SlowerOptions.Value ? 13 : 14;
+        else UIManager.instance.MENU_FADE_SPEED = 3.2f; // default
     }
 }

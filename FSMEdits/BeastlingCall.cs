@@ -1,7 +1,4 @@
-﻿using HutongGames.PlayMaker;
-using HutongGames.PlayMaker.Actions;
-
-namespace QoL.FSMEdits;
+﻿namespace QoL.FSMEdits;
 
 internal static class BeastlingCall {
     internal static void SilkSpecials(PlayMakerFSM fsm)

@@ -4,6 +4,8 @@ namespace QoL;
 
 public static class Configs
 {
+    public static ConfigEntry<bool> SlowerOptions { get; private set; } = null!;
+
     public static ConfigEntry<bool> FleaTracked { get; private set; } = null!;
 
     public static ConfigEntry<bool> FasterBellwayTravel { get; private set; } = null!;
@@ -31,7 +33,6 @@ public static class Configs
     public static ConfigEntry<bool> SkipCutscene { get; private set; } = null!;
     public static ConfigEntry<bool> SkipWeakness { get; private set; } = null!;
     public static ConfigEntry<bool> FastUI { get; private set; } = null!;
-    public static ConfigEntry<bool> NoHardFalls { get; private set; } = null!;
 
     internal static void Bind(ConfigFile config)
     {
@@ -58,11 +59,12 @@ public static class Configs
         OldMist = config.Bind("Old Patch Settings", "Old Mist", false , "");
 
         InstantLevers = config.Bind("Global Settings", "Instant Levers", true, "Removes the delay when hitting a lever.");
-        FasterLifts = config.Bind("Global Settings", "Faster Lifts", true, "Makes lifts extremely fast.");
-        InstantText = config.Bind("Global Settings", "Instant Text", true, "Makes text scroll speed and popup speed instant.");
         SkipCutscene = config.Bind("Global Settings", "Skip Cutscenes Faster", true, "Skips cutscenes faster.");
         SkipWeakness = config.Bind("Global Settings", "Skip Weakness", true, "Removes weakness scenes in Moss Grotto and Cogwork Core.");
-        FastUI = config.Bind("Global Settings", "Fast Menu", true, "Removes the fade delays.");
-        NoHardFalls = config.Bind("Global Settings", "No Hard Falls", false, "No more broken bones.");
+
+        InstantText = config.Bind("Fast Settings", "Instant Text", true, "Makes text scroll speed and popup speed instant.");
+        FasterLifts = config.Bind("Fast Settings", "Faster Lifts", true, "Makes lifts extremely fast.");
+        FastUI = config.Bind("Fast Settings", "Fast Menu", true, "Removes the menu fade delay.");
+        SlowerOptions = config.Bind("Fast Settings", "Soften Fast Settings", false, "Makes Fast Settings less extreme.");
     }
 }
