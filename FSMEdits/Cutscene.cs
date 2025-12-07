@@ -1,6 +1,4 @@
-﻿using HutongGames.PlayMaker.Actions;
-
-namespace QoL.FSMEdits;
+﻿namespace QoL.FSMEdits;
 
 internal static class Cutscene
 {
