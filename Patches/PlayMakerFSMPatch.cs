@@ -22,7 +22,8 @@ internal static class PlayMakerFSMPatch
         Cutscene.LastDive,
         ToolPatch.VoltVessel,
         ToolPatch.Scuttlebrace,
-        Abilities.NeedleStrike
+        Abilities.NeedleStrike,
+        SkipWeakness.SkipWeaknessPatch
     ];
 
     [HarmonyPostfix]

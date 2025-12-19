@@ -13,17 +13,14 @@ public sealed partial class QoLPlugin : BaseUnityPlugin
 {
     private readonly Harmony harmony = new(Id);
 
-	public static QoLPlugin Instance { get; private set; } = null!;
-
 	internal static new ManualLogSource Logger { get; private set; } = null!;
 
     private void Awake()
     {
-        Instance = this;
 		Logger = base.Logger;
 
         Configs.Bind(Config);
-        SceneManager.sceneLoaded += OnSceneLoadPatch.OnSceneLoad;
+        SceneManager.activeSceneChanged += OnSceneLoadPatch.OnSceneLoad;
         harmony.PatchAll();
 
         Logger.LogInfo($"Plugin {Name} ({Id}) v{Version} has loaded!");

@@ -90,7 +90,7 @@ public static class FasterBoss
 
         Plugin.Logger.LogDebug("Modifying BellBeast Boss FSM");
 
-        fsm.ChangeTransition("Init", "FINISHED", "Set Return State");
+        fsm.ChangeTransition("Init", FsmEvent.Finished.Name, "Set Return State");
     }
 
     internal static void FasterMossMother(PlayMakerFSM fsm) 
@@ -119,9 +119,9 @@ public static class FasterBoss
         {
             Plugin.Logger.LogDebug("Modifying Trobbio Boss FSM");
 
-            fsm.ChangeTransition("Init", "FINISHED", "Wait Refight");
+            fsm.ChangeTransition("Init", FsmEvent.Finished.Name, "Wait Refight");
             fsm.GetState("Start Pause")!.DisableAction(0); // Wait
-            fsm.ChangeTransition("Start Pause", "FINISHED", "Quick Entrance 1");
+            fsm.ChangeTransition("Start Pause", FsmEvent.Finished.Name, "Quick Entrance 1");
         }
 
         else if (fsm is { FsmName: "Control", name: "Tormented Trobbio" })
