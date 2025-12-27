@@ -20,10 +20,13 @@ internal static class PlayMakerFSMPatch
         BeastlingCall.Beastlings,
         BeastlingCall.Needolin,
         Cutscene.LastDive,
+        Cutscene.Lace2,
         ToolPatch.VoltVessel,
         ToolPatch.Scuttlebrace,
         Abilities.NeedleStrike,
-        SkipWeakness.SkipWeaknessPatch
+        SkipWeakness.SkipWeaknessPatch,
+        FastMenu.ShopUI,
+        FastMenu.QuestUIPrompt,
     ];
 
     [HarmonyPostfix]

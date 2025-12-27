@@ -36,7 +36,7 @@ public static class Configs
 
     internal static void Bind(ConfigFile config)
     {
-        FleaTracked = config.Bind("Tracker Settings", "Count Fleas", true, "Counts saved fleas.");
+        FleaTracked = config.Bind("Tracker Settings", "Count Fleas", false, "Counts saved fleas.");
 
         FasterBellwayTravel = config.Bind("Bellway Settings", "Faster Bellway Travel Animation", true, "Speeds up arrival and departure animations for Bellway travel.");
         FasterBellwayBuy = config.Bind("Bellway Settings", "Faster Bellway Purchase", true, "Speeds up the animation when buying Bellway stations and calls the Bell Beast afterwards.");
