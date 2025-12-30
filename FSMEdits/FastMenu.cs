@@ -62,14 +62,14 @@ public static class FastMenu
             return;
         }
 
-        var animator = fsm.gameObject.transform.GetChild(1).GetComponent<Animator>();
-
-        if (animator != null)
-            animator.speed = 2f;
+        fsm.gameObject.transform.GetChild(1).GetComponent<Animator>().speed = 2f;
 
         fsm.GetState("Idle")!.GetFirstActionOfType<Wait>()!.time = 1f;
         fsm.GetState("Fade Down")!.DisableActionsOfType<Wait>();
         fsm.GetState("Explainer Up")!.DisableActionsOfType<Wait>();
+
+        if (fsm.name == "Wish Granted Prompt New(Clone)") // Fix glow issue
+            fsm.GetState("Press")!.GetFirstActionOfType<ActivateGameObject>()!.Enabled = false;
     }
 
 }

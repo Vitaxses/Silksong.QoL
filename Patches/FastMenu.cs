@@ -3,17 +3,15 @@ namespace QoL.Patches;
 [HarmonyPatch(typeof(UIManager))]
 internal static class UIManagerPatch
 {
-    [HarmonyPatch(nameof(UIManager.HideMenu))]
-    [HarmonyWrapSafe, HarmonyPrefix]
-    private static void HideMenu_Prefix()
-    {
-        Adjust();
-    }
-
     [HarmonyPatch(nameof(UIManager.Start))]
     [HarmonyWrapSafe, HarmonyPostfix]
     private static void Start_Postfix()
     {
+        Configs.FastUI.SettingChanged += (sender, e) =>
+        {
+            Adjust();
+        };
+
         Adjust();
     }
 

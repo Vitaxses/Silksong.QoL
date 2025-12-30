@@ -26,6 +26,7 @@ public static class Configs
     public static ConfigEntry<bool> BeastBoosts { get; private set; } = null!;
     public static ConfigEntry<bool> OldScuttlebrace { get; private set; } = null!;
     public static ConfigEntry<bool> OldMist { get; private set; } = null!;
+    public static ConfigEntry<bool> TrobbioSkip { get; private set; } = null!;
 
     public static ConfigEntry<bool> InstantLevers { get; private set; } = null!;
     public static ConfigEntry<bool> FasterLifts { get; private set; } = null!;
@@ -57,6 +58,7 @@ public static class Configs
         BeastBoosts = config.Bind("Old Patch Settings", "Beast Boosts", false, "");
         OldScuttlebrace = config.Bind("Old Patch Settings", "Old Scuttlebrace", false , "");
         OldMist = config.Bind("Old Patch Settings", "Old Mist", false , "");
+        TrobbioSkip = config.Bind("Old Patch Settings", "Trobbio Skip", false , "");
 
         InstantLevers = config.Bind("Global Settings", "Instant Levers", true, "Removes the delay when hitting a lever.");
         SkipCutscene = config.Bind("Global Settings", "Skip Cutscenes Faster", true, "Skips cutscenes faster.");

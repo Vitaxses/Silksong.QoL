@@ -5,7 +5,7 @@ internal static class InputHandlerPatch
 {
     private static readonly string[] UnskipScene = { "Bone_East_Umbrella", "Belltown", "Room_Pinstress", "Belltown_Room_pinsmith", 
         "Belltown_Room_doctor", "End_Credits_Scroll", "End_Credits", "Menu_Credits", "End_Game_Completion", 
-        "PermaDeath", "Bellway_City", "City_Lace_cutscene", "Opening_Sequence_Act3" };
+        "PermaDeath", "Bellway_City", "City_Lace_cutscene", "Opening_Sequence_Act3", "Belltown_Room_Spare" };
 
     [HarmonyWrapSafe, HarmonyPrefix]
     private static bool Prefix(InputHandler __instance, ref GlobalEnums.SkipPromptMode newMode)

@@ -37,6 +37,7 @@ A Quality of Life mod for Hollow Knight: Silksong
   + Old Scuttlebrace
   + Old Mist
   + Beast Boosts
+  + Trobbio Skip
 
 ## Installation
 
