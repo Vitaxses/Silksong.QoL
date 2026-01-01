@@ -75,11 +75,22 @@ public static class FasterBoss
             Plugin.Logger.LogDebug("Modifying Lace1 Boss FSM");
 
             fsm.ChangeTransition("Encountered?", "MEET", "Refight");   
-        } else if (fsm.gameObject is { name: "Intro Control", scene.name: "Abyss_Cocoon" })
+        }
+        
+        else if (fsm.gameObject is { name: "Intro Control", scene.name: "Abyss_Cocoon" })
         {
             Plugin.Logger.LogDebug("Modifying LostLace Boss FSM");
 
-            fsm.ChangeTransition("Check Encountered", FsmEvent.Finished.Name, "ENCOUNTERED");
+            fsm.ChangeTransition("Check Encountered", FsmEvent.Finished.Name, "Encountered");
+        }
+
+        else if (fsm is { name: "door_entry", FsmName: "Control", gameObject.scene.name: "Abyss_Cocoon" })
+        {
+            PlayerDataBoolTest pdbt = fsm.GetState("Silk Darkness?")!.GetFirstActionOfType<PlayerDataBoolTest>()!;
+            pdbt.isFalse = pdbt.isTrue;
+
+            PlayerDataBoolTest pdbt2 = fsm.GetState("Return Control")!.GetFirstActionOfType<PlayerDataBoolTest>()!;
+            pdbt2.isFalse = pdbt2.isTrue;
         }
     }
 

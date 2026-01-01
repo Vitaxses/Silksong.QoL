@@ -49,6 +49,23 @@ internal static class CreditsHelperPatch
     }
 }
 
+[HarmonyPatch(typeof(CutsceneHelper), nameof(CutsceneHelper.Start))]
+internal static class CutsceneHelperPatch
+{
+
+    [HarmonyWrapSafe, HarmonyPrefix]
+    static void Prefix_Start(CutsceneHelper __instance)
+    {
+        if (!Configs.SkipCutscene.Value || GameManager.instance.sceneName != "End_Credits_Scroll")
+            return;
+
+        __instance.startSkipLocked = false;
+        __instance.waitBeforeFadeIn = 0f;
+        __instance.skipMode = GlobalEnums.SkipPromptMode.SKIP_INSTANT;
+        __instance.UnlockSkip();
+    }
+}
+
 // Skips the Team Cherry icon
 [HarmonyPatch(typeof(StartManager), nameof(StartManager.Start))]
 internal static class StartManagerPatch
