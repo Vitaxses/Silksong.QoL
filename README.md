@@ -28,8 +28,11 @@ A Quality of Life mod for Hollow Knight: Silksong
 - NPC
   + Faster NPC Introduction
   + Faster Boss Introduction
+- Cutscene
+  + Skip Cutscenes Faster
+  + Skip Dream Cutscenes
+  + Skip Dream Cutscenes Fully
 - Instant Levers
-- Skip Cutscenes Faster
 - Skip Weakness Scenes
 - Old Patch
   + Cloakless Clawline

@@ -2,15 +2,13 @@ using PD = PlayerData;
 
 namespace QoL.FSMEdits;
 
-public static class FasterBoss
+public static class FsmFasterBoss
 {
-    internal static void FasterBOSS(PlayMakerFSM fsm) {
+    internal static void FasterBoss(PlayMakerFSM fsm) {
         if (!Configs.FasterBossLoad.Value)
             return;
         
         FasterLace(fsm);
-        FasterBellBeast(fsm);
-        FasterMossMother(fsm);
         FasterGMS(fsm);
         FasterTrobbio(fsm);
         FasterWidow(fsm);
@@ -92,26 +90,6 @@ public static class FasterBoss
             PlayerDataBoolTest pdbt2 = fsm.GetState("Return Control")!.GetFirstActionOfType<PlayerDataBoolTest>()!;
             pdbt2.isFalse = pdbt2.isTrue;
         }
-    }
-
-    internal static void FasterBellBeast(PlayMakerFSM fsm) 
-    {
-        if (fsm is not { FsmName: "Return State", name: "Boss Scene", gameObject.scene.name: "Bone_05_boss" } || !ToolItemManager.IsToolEquipped("Silk Spear"))
-            return;
-
-        Plugin.Logger.LogDebug("Modifying BellBeast Boss FSM");
-
-        fsm.ChangeTransition("Init", FsmEvent.Finished.Name, "Set Return State");
-    }
-
-    internal static void FasterMossMother(PlayMakerFSM fsm) 
-    {
-        if (fsm is not { FsmName: "Control", name: "Mossbone Mother" })
-            return;
-
-        Plugin.Logger.LogDebug("Modifying MossMother Boss");
-
-        fsm.gameObject.transform.GetChild(12).position = new Vector3(65.7739f, 15.14f, 0.0062f);
     }
 
     internal static void FasterGMS(PlayMakerFSM fsm) 

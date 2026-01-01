@@ -4,8 +4,6 @@ namespace QoL;
 
 public static class Configs
 {
-    public static ConfigEntry<bool> SlowerOptions { get; private set; } = null!;
-
     public static ConfigEntry<bool> FleaTracked { get; private set; } = null!;
 
     public static ConfigEntry<bool> FasterBellwayTravel { get; private set; } = null!;
@@ -28,12 +26,17 @@ public static class Configs
     public static ConfigEntry<bool> OldMist { get; private set; } = null!;
     public static ConfigEntry<bool> TrobbioSkip { get; private set; } = null!;
 
+    public static ConfigEntry<bool> SkipCutscene { get; private set; } = null!;
+    public static ConfigEntry<bool> SkipDreamCutscene { get; private set; } = null!;
+    public static ConfigEntry<bool> SkipDreamCutsceneFully { get; private set; } = null!;
+
     public static ConfigEntry<bool> InstantLevers { get; private set; } = null!;
+    public static ConfigEntry<bool> SkipWeakness { get; private set; } = null!;
+
     public static ConfigEntry<bool> FasterLifts { get; private set; } = null!;
     public static ConfigEntry<bool> InstantText { get; private set; } = null!;
-    public static ConfigEntry<bool> SkipCutscene { get; private set; } = null!;
-    public static ConfigEntry<bool> SkipWeakness { get; private set; } = null!;
     public static ConfigEntry<bool> FastUI { get; private set; } = null!;
+    public static ConfigEntry<bool> SlowerOptions { get; private set; } = null!;
 
     internal static void Bind(ConfigFile config)
     {
@@ -60,8 +63,11 @@ public static class Configs
         OldMist = config.Bind("Old Patch Settings", "Old Mist", false , "");
         TrobbioSkip = config.Bind("Old Patch Settings", "Trobbio Skip", false , "");
 
+        SkipCutscene = config.Bind("Cutscene Settings", "Skip Cutscenes Faster", true, "Skips cutscenes faster.");
+        SkipDreamCutscene = config.Bind("Cutscene Settings", "Skip Dream Cutscenes", false, "Skips dream cutscenes (Needolin & First Sinner).");
+        SkipDreamCutsceneFully = config.Bind("Cutscene Settings", "Skip Dream Cutscenes Fully", false, "Skips dream cutscenes entirely if ability requirements are met.");
+
         InstantLevers = config.Bind("Global Settings", "Instant Levers", true, "Removes the delay when hitting a lever.");
-        SkipCutscene = config.Bind("Global Settings", "Skip Cutscenes Faster", true, "Skips cutscenes faster.");
         SkipWeakness = config.Bind("Global Settings", "Skip Weakness", true, "Removes weakness scenes in Moss Grotto and Cogwork Core.");
 
         InstantText = config.Bind("Fast Settings", "Instant Text", true, "Makes text scroll speed and popup speed instant.");

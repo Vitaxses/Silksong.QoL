@@ -9,7 +9,7 @@ internal static class PlayMakerFSMPatch
     // Feel free to ignore nullity checks as they will be caught here
     private static readonly Action<PlayMakerFSM>[] edits =
     [
-        FasterBoss.FasterBOSS,
+        FsmFasterBoss.FasterBoss,
         FasterNpc.FasterNPC,
         Bellway.BellBeast,
         Bellway.Toll,
@@ -24,6 +24,9 @@ internal static class PlayMakerFSMPatch
         Cutscene.FleaTravel,
         Cutscene.ShermaAct3Intro,
         Cutscene.DivingBell,
+        DreamCutscene.Widow,
+        DreamCutscene.FirstSinner,
+        DreamCutscene.MemoryThread,
         ToolPatch.VoltVessel,
         ToolPatch.Scuttlebrace,
         Abilities.NeedleStrike,
