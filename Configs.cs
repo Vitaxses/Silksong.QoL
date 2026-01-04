@@ -65,7 +65,7 @@ public static class Configs
 
         SkipCutscene = config.Bind("Cutscene Settings", "Skip Cutscenes Faster", true, "Skips cutscenes faster.");
         SkipDreamCutscene = config.Bind("Cutscene Settings", "Skip Dream Cutscenes", false, "Skips dream cutscenes (Needolin & First Sinner).");
-        SkipDreamCutsceneFully = config.Bind("Cutscene Settings", "Skip Dream Cutscenes Fully", false, "Skips dream cutscenes entirely if ability requirements are met.");
+        SkipDreamCutsceneFully = config.Bind("Cutscene Settings", "Fully Skip Dream Cutscenes", false, "Skips dream cutscenes entirely if ability requirements are met.");
 
         InstantLevers = config.Bind("Global Settings", "Instant Levers", true, "Removes the delay when hitting a lever.");
         SkipWeakness = config.Bind("Global Settings", "Skip Weakness", true, "Removes weakness scenes in Moss Grotto and Cogwork Core.");
