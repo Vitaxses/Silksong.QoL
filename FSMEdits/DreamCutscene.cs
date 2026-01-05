@@ -105,4 +105,54 @@ internal static class DreamCutscene
             fsm.GetState("Transition Scene")!.GetFirstActionOfType<ScreenFader>()!.duration = 0.3f;
         }
     }
+
+    internal static void SilkHeart(PlayMakerFSM fsm)
+    {
+        if (!Configs.SkipDreamCutscene.Value)
+            return;
+        
+        if (fsm.FsmName == "Memory Control" && fsm.gameObject.scene.name.StartsWith("Memory_Silk_Heart"))
+        {
+            fsm.GetState("To White")!.GetFirstActionOfType<Wait>()!.time = 1f;
+            fsm.ChangeTransition("To White", FsmEvent.Finished.Name, "To Black");
+        }
+
+        if (!Configs.SkipDreamCutsceneFully.Value)
+            return;
+        
+        if (fsm is not { FsmName: "Control", name: "Silk Heart" })
+            return;
+
+        string scene = fsm.gameObject.scene.name.Replace("_boss", "");
+        fsm.FindStringVariable("Memory Scene")!.Value = scene;
+
+        fsm.GetState("Memory?")!.DisableActionsOfType<StringCompare>();
+        
+        FsmState memorySceneState = fsm.GetState("Memory Scene")!;
+
+        fsm.ChangeTransition("Drop To Place", FsmEvent.Finished.Name, memorySceneState.Name);
+
+        memorySceneState.DisableAction(0); // Stop preloading
+        memorySceneState.GetFirstActionOfType<BeginSceneTransition>()!.entryGateName = "door_cinematicEnd";
+
+        fsm.GetState("Set Data")!.AddMethod((action) =>
+        {
+            switch (scene)
+            {
+                case "Bone_05":
+                    PlayerData.instance.defeatedBellBeast = PlayerData.instance.bonebottomQuestBoardFixed = true;
+                break;
+
+                case "Ward_02":
+                    PlayerData.instance.wardBossDefeated = true;
+                break;
+                
+                case "Song_Tower_01":
+                    PlayerData.instance.defeatedLaceTower = true;
+                break;
+            }
+            action.Finish();
+        });
+    }
+    
 }
