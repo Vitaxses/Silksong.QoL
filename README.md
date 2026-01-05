@@ -31,7 +31,7 @@ A Quality of Life mod for Hollow Knight: Silksong
 - Cutscene
   + Skip Cutscenes Faster
   + Skip Dream Cutscenes
-  + Skip Dream Cutscenes Fully
+  + Fully Skip Dream Cutscenes
 - Instant Levers
 - Skip Weakness Scenes
 - Old Patch
