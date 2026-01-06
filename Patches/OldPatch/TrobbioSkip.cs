@@ -1,4 +1,4 @@
-namespace QoL.Patches;
+namespace QoL.Patches.OldPatch;
 
 [HarmonyPatch(typeof(HitSlidePlatform), nameof(HitSlidePlatform.Awake))]
 internal static class TrobbioSkip

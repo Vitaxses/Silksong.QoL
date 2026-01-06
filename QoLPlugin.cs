@@ -1,8 +1,7 @@
 using BepInEx;
 using BepInEx.Logging;
 
-using QoL.Patches;
-
+using QoL.Patches.OldPatch;
 using UnityEngine.SceneManagement;
 
 namespace QoL;

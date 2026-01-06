@@ -1,4 +1,4 @@
-namespace QoL.Patches;
+namespace QoL.Patches.Fast;
 
 [HarmonyPatch(typeof(LiftControl), nameof(LiftControl.Start))]
 internal static class LiftControlPatch

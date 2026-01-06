@@ -1,4 +1,4 @@
-namespace QoL.Patches;
+namespace QoL.Patches.Fast;
 
 [HarmonyPatch(typeof(DialogueBox), nameof(DialogueBox.Start))]
 internal static class DialogueBoxPatch

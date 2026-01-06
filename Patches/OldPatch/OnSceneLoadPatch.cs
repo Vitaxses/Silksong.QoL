@@ -1,11 +1,10 @@
 using UnityEngine.SceneManagement;
 
-namespace QoL.Patches;
+namespace QoL.Patches.OldPatch;
 
-// SceneLoad (OldPatch)
+// SceneLoad OldPatch
 internal static class OnSceneLoadPatch
 {
-
     internal static void OnSceneLoad(Scene from, Scene to)
     {
         if (Configs.CloaklessClawline.Value && to.name == "Under_17")

@@ -1,5 +1,4 @@
-
-namespace QoL.Patches;
+namespace QoL.Patches.OldPatch;
 
 // prob not the best way to achieve the old behaviour
 [HarmonyPatch(typeof(MazeController), nameof(MazeController.SubscribeDoorEntered))]

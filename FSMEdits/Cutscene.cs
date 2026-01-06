@@ -1,6 +1,6 @@
 ﻿namespace QoL.FSMEdits;
 
-internal static class Cutscene
+internal static class FsmCutscene
 {
     internal static void LastDive(PlayMakerFSM fsm)
     {
@@ -141,7 +141,7 @@ internal static class Cutscene
             fsm.ChangeTransition("Fade Up", FsmEvent.Finished.Name, "Get Up");
             fsm.GetState("Get Up")!.AddMethod((action) =>
             {
-                HeroController.instance.RegainControl(); 
+                HeroController.instance.RegainControl();
             });
         }
 

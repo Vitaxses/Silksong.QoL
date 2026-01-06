@@ -1,4 +1,4 @@
-namespace QoL.Patches;
+namespace QoL.Patches.Cutscene;
 
 [HarmonyPatch(typeof(ToolItem), nameof(ToolItem.Unlock))]
 internal static class SkipTutorialTool

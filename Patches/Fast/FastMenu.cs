@@ -1,9 +1,8 @@
-namespace QoL.Patches;
+namespace QoL.Patches.Fast;
 
-[HarmonyPatch(typeof(UIManager))]
+[HarmonyPatch(typeof(UIManager), nameof(UIManager.Start))]
 internal static class UIManagerPatch
 {
-    [HarmonyPatch(nameof(UIManager.Start))]
     [HarmonyWrapSafe, HarmonyPostfix]
     private static void Start_Postfix()
     {

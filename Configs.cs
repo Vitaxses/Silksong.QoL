@@ -29,10 +29,10 @@ public static class Configs
     public static ConfigEntry<bool> SkipCutscene { get; private set; } = null!;
     public static ConfigEntry<bool> SkipDreamCutscene { get; private set; } = null!;
     public static ConfigEntry<bool> SkipDreamCutsceneFully { get; private set; } = null!;
+    public static ConfigEntry<bool> SkipTutorialToolMsg { get; private set; } = null!;
 
     public static ConfigEntry<bool> InstantLevers { get; private set; } = null!;
     public static ConfigEntry<bool> SkipWeakness { get; private set; } = null!;
-    public static ConfigEntry<bool> SkipTutorialToolMsg { get; private set; } = null!;
 
     public static ConfigEntry<bool> FasterLifts { get; private set; } = null!;
     public static ConfigEntry<bool> InstantText { get; private set; } = null!;
@@ -67,10 +67,10 @@ public static class Configs
         SkipCutscene = config.Bind("Cutscene Settings", "Skip Cutscenes Faster", true, "Skips cutscenes faster.");
         SkipDreamCutscene = config.Bind("Cutscene Settings", "Skip Dream Cutscenes", true, "Skips dream cutscenes (Needolin & First Sinner).");
         SkipDreamCutsceneFully = config.Bind("Cutscene Settings", "Fully Skip Dream Scenes", false, "Skips dream scenes entirely.");
+        SkipTutorialToolMsg = config.Bind("Cutscene Settings", "Skip Tool Pickup Tutorial", true, "Skips the first tool pickup tutorial.");
 
         InstantLevers = config.Bind("Global Settings", "Instant Levers", true, "Removes the delay when hitting a lever.");
         SkipWeakness = config.Bind("Global Settings", "Skip Weakness", true, "Removes weakness scenes in Moss Grotto and Cogwork Core.");
-        SkipTutorialToolMsg = config.Bind("Global Settings", "Skip Tool Pickup Tutorial", true, "Skips the tool pickup tutorial.");
 
         InstantText = config.Bind("Fast Settings", "Instant Text", true, "Makes text scroll speed and popup speed instant.");
         FasterLifts = config.Bind("Fast Settings", "Faster Lifts", true, "Makes lifts faster.");

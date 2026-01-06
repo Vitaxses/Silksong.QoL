@@ -1,4 +1,4 @@
-namespace QoL.Patches;
+namespace QoL.Patches.OldPatch;
 
 [HarmonyPatch(typeof(HeroDownAttack), nameof(HeroDownAttack.IsNonBounce))]
 internal static class OldVoltVesselsPogoPatch

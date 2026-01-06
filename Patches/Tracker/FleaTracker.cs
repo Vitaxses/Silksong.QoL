@@ -1,4 +1,4 @@
-namespace QoL.Patches;
+namespace QoL.Patches.Tracker;
 
 [HarmonyPatch(typeof(InventoryPaneInput), nameof(InventoryPaneInput.OnEnable))]
 internal static class InventoryPaneInputPatch
@@ -11,7 +11,7 @@ internal static class InventoryPaneInputPatch
     {
         if (!Configs.FleaTracked.Value)
         {
-            if (FleaCounter != null) FleaCounter.SetActive(false);
+            if (FleaCounter != null && FleaCounter.activeSelf) FleaCounter.SetActive(false);
             return;
         }
 
