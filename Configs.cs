@@ -32,6 +32,7 @@ public static class Configs
 
     public static ConfigEntry<bool> InstantLevers { get; private set; } = null!;
     public static ConfigEntry<bool> SkipWeakness { get; private set; } = null!;
+    public static ConfigEntry<bool> SkipTutorialToolMsg { get; private set; } = null!;
 
     public static ConfigEntry<bool> FasterLifts { get; private set; } = null!;
     public static ConfigEntry<bool> InstantText { get; private set; } = null!;
@@ -54,7 +55,7 @@ public static class Configs
         FasterVentricaBuy = config.Bind("Ventrica Settings", "Faster Ventrica Purchase", true, "Speeds up the animation when buying Ventrica stations.");
 
         FasterNPC = config.Bind("NPC Settings", "Faster NPC", true, "Removes some introductory dialogue for NPCs.");
-        FasterBossLoad = config.Bind("NPC Settings", "(Experimental) Faster Boss Start", false, "Removes first-time events for bosses.");
+        FasterBossLoad = config.Bind("NPC Settings", "Faster Boss Start", false, "Removes first-time events for bosses.");
         
         CloaklessClawline = config.Bind("Old Patch Settings", "Cloakless Clawline", false, "Wall requiring the Drifter's Cloak is now clingable.");
         OldVoltVessels = config.Bind("Old Patch Settings", "Old Volt Vessels", false, "");
@@ -69,9 +70,10 @@ public static class Configs
 
         InstantLevers = config.Bind("Global Settings", "Instant Levers", true, "Removes the delay when hitting a lever.");
         SkipWeakness = config.Bind("Global Settings", "Skip Weakness", true, "Removes weakness scenes in Moss Grotto and Cogwork Core.");
+        SkipTutorialToolMsg = config.Bind("Global Settings", "Skip Tool Pickup Tutorial", true, "Skips the tool pickup tutorial.");
 
         InstantText = config.Bind("Fast Settings", "Instant Text", true, "Makes text scroll speed and popup speed instant.");
-        FasterLifts = config.Bind("Fast Settings", "Faster Lifts", true, "Makes lifts extremely fast.");
+        FasterLifts = config.Bind("Fast Settings", "Faster Lifts", true, "Makes lifts faster.");
         FastUI = config.Bind("Fast Settings", "Fast Menu", true, "Removes the menu fade delay.");
         SlowerOptions = config.Bind("Fast Settings", "Soften Fast Settings", false, "Makes Fast Settings less extreme.");
     }

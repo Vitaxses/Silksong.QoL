@@ -26,26 +26,6 @@ public static class FastMenu
             fsm.GetState("Particles")!.GetFirstActionOfType<Wait>()!.time = 0.1f;
         }
 
-        else if (fsm.FsmName == "ui_list")
-        {
-            fsm.GetState("Selection Made")!.GetFirstActionOfType<Wait>()!.time = 0.15f;
-            foreach (FsmState state in fsm.FsmStates)
-            {
-                if (!state.Name.Contains("Left") && !state.Name.Contains("Right") && !state.Name.Contains("Up") && !state.Name.Contains("Down"))
-                {
-                    continue;
-                }
-
-                var wait = state.GetFirstActionOfType<Wait>();
-                if (wait == null)
-                {
-                    continue;
-                }
-
-                wait.time = 0.8f;
-            }
-        }
-
         else if (fsm.FsmName == "Shift_pos")
         {
             fsm.GetState("Tween")!.GetFirstActionOfType<iTweenMoveTo>()!.time.Value *= 0.13f;
