@@ -19,6 +19,7 @@ public static class Configs
     public static ConfigEntry<bool> FasterNPC { get; private set; } = null!;
     public static ConfigEntry<bool> FasterBossLoad { get; private set; } = null!;
 
+    public static ConfigEntry<bool> OldFloat { get; private set; } = null!;
     public static ConfigEntry<bool> CloaklessClawline { get; private set; } = null!;
     public static ConfigEntry<bool> OldVoltVessels { get; private set; } = null!;
     public static ConfigEntry<bool> BeastBoosts { get; private set; } = null!;
@@ -56,6 +57,7 @@ public static class Configs
         FasterNPC = config.Bind("NPC Settings", "Faster NPC", true, "Removes some introductory dialogue for NPCs.");
         FasterBossLoad = config.Bind("NPC Settings", "Faster Boss Start", false, "Removes first-time events for bosses.");
         
+        OldFloat = config.Bind("Old Patch Settings", "Float Override", false, "Re-adds float override input (Down + Jump).");
         CloaklessClawline = config.Bind("Old Patch Settings", "Cloakless Clawline", false, "Wall requiring the Drifter's Cloak in Underworks is now clingable.");
         OldVoltVessels = config.Bind("Old Patch Settings", "Old Volt Vessels", false, "Allows Volt Vessels to be pogoed with tools and break the one-way floor in the Putrified Ducts.");
         BeastBoosts = config.Bind("Old Patch Settings", "Beast Boosts", false, "The Beast's Crest Needle Art occasionally grants extra height.");

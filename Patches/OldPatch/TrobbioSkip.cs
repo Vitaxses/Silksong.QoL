@@ -5,7 +5,7 @@ internal static class TrobbioSkip
 {
     
     [HarmonyWrapSafe, HarmonyPostfix]
-    public static void Postfix_Awake(HitSlidePlatform __instance)
+    private static void Postfix_Awake(HitSlidePlatform __instance)
     {
         if (!Configs.TrobbioSkip.Value)
             return;

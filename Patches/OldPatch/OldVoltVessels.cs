@@ -4,7 +4,7 @@ namespace QoL.Patches.OldPatch;
 internal static class OldVoltVesselsPogoPatch
 {
     [HarmonyPostfix]
-    public static void Postfix_IsNonBounce(GameObject obj, ref bool __result)
+    private static void Postfix_IsNonBounce(GameObject obj, ref bool __result)
     {
         if (__result || !Configs.OldVoltVessels.Value)
             return;

@@ -4,7 +4,7 @@ namespace QoL.Patches.Cutscene;
 internal static class SkipTutorialTool
 {
     [HarmonyWrapSafe, HarmonyPrefix]
-    public static void Prefix_Unlock()
+    private static void Prefix_Unlock()
     {
         if (!Configs.SkipTutorialToolMsg.Value)
             return;
