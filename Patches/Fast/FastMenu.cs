@@ -4,7 +4,7 @@ namespace QoL.Patches.Fast;
 internal static class UIManagerPatch
 {
     [HarmonyWrapSafe, HarmonyPostfix]
-    private static void Start_Postfix()
+    private static void Postfix_Start()
     {
         Configs.FastUI.SettingChanged += (sender, e) =>
         {

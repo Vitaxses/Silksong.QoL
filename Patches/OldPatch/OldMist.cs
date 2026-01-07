@@ -5,7 +5,7 @@ namespace QoL.Patches.OldPatch;
 internal static class OldMist
 {
     [HarmonyWrapSafe, HarmonyPrefix]
-    private static bool Prefix(MazeController __instance, TransitionPoint door)
+    private static bool Prefix_SubscribeDoorEntered(MazeController __instance, TransitionPoint door)
     {
         if (!Configs.OldMist.Value) return true;
         

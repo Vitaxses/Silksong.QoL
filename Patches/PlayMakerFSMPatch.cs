@@ -37,7 +37,7 @@ internal static class PlayMakerFSMPatch
     ];
 
     [HarmonyPostfix]
-    private static void Postfix(PlayMakerFSM __instance)
+    private static void Postfix_Start(PlayMakerFSM __instance)
     {
         foreach (Action<PlayMakerFSM> edit in edits)
         {

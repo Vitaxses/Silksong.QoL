@@ -4,7 +4,7 @@ namespace QoL.Patches;
 internal static class LeverPatch
 {
     [HarmonyWrapSafe, HarmonyPostfix]
-    private static void LeverStartPostfix(Lever __instance)
+    private static void Postfix_Start(Lever __instance)
     {
         if (Configs.InstantLevers.Value)
             __instance.openGateDelay = 0f;
@@ -15,7 +15,7 @@ internal static class LeverPatch
 internal static class Lever_tk2dPatch
 {
     [HarmonyWrapSafe, HarmonyPostfix]
-    private static void TK2DLeverStartPostfix(Lever_tk2d __instance)
+    private static void Postfix_Start(Lever_tk2d __instance)
     {
         if (Configs.InstantLevers.Value)
             __instance.openGateDelay = 0f;
@@ -26,7 +26,7 @@ internal static class Lever_tk2dPatch
 internal static class PressurePlateBasePatch
 {
     [HarmonyWrapSafe, HarmonyPostfix]
-    private static void TK2DLeverStartPostfix(PressurePlateBase __instance)
+    private static void Postfix_Start(PressurePlateBase __instance)
     {
         if (Configs.InstantLevers.Value)
             __instance.gateOpenDelay = __instance.waitTime = __instance.dropTime = 0f;

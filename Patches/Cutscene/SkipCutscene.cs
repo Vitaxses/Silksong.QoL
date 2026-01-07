@@ -8,7 +8,7 @@ internal static class InputHandlerPatch
         "PermaDeath", "Bellway_City", "City_Lace_cutscene", "Opening_Sequence_Act3", "Belltown_Room_Spare" };
 
     [HarmonyWrapSafe, HarmonyPrefix]
-    private static bool Prefix(InputHandler __instance, ref GlobalEnums.SkipPromptMode newMode)
+    private static bool Prefix_SetSkipMode(InputHandler __instance, ref GlobalEnums.SkipPromptMode newMode)
     {
         if (Configs.SkipCutscene.Value && !UnskipScene.Contains(GameManager.instance.sceneName))
         {
@@ -22,7 +22,7 @@ internal static class InputHandlerPatch
 internal static class SkippableSequencePatch
 {
     [HarmonyWrapSafe, HarmonyPrefix]
-    private static bool Prefix(SkippableSequence __instance)
+    private static bool Prefix_CanSkip(SkippableSequence __instance)
     {
         if (Configs.SkipCutscene.Value)
             __instance.AllowSkip();
