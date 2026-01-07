@@ -8,6 +8,7 @@ namespace QoL;
 
 [BepInAutoPlugin(id: "io.github.vitaxses.qol")]
 [BepInDependency("org.silksong-modding.fsmutil", BepInDependency.DependencyFlags.HardDependency)]
+[BepInDependency(ModCompatibility.ModMenuGuid, BepInDependency.DependencyFlags.SoftDependency)]
 public sealed partial class QoLPlugin : BaseUnityPlugin
 {
     private readonly Harmony harmony = new(Id);
@@ -21,6 +22,8 @@ public sealed partial class QoLPlugin : BaseUnityPlugin
         Configs.Bind(Config);
         SceneManager.activeSceneChanged += OnSceneLoadPatch.OnSceneLoad;
         harmony.PatchAll();
+
+        ModCompatibility.Init();
 
         Logger.LogInfo($"Plugin {Name} ({Id}) v{Version} has loaded!");
     }
