@@ -15,6 +15,7 @@ A Quality of Life mod for Hollow Knight: Silksong
   + Instant Text
   + Faster Lifts
   + Soften Fast Settings
+  + Instant Levers
 - Bellway
   + Faster Travel Animations
   + Faster Bellway Station Buy
@@ -32,9 +33,10 @@ A Quality of Life mod for Hollow Knight: Silksong
   + Skip Cutscenes Faster
   + Skip Dream Cutscenes
   + Fully Skip Dream Cutscenes
-- Instant Levers
-- Skip Weakness Scenes
+  + Skip Weakness Scenes
+  + Skip Tutorial Tool Msg
 - Old Patch
+  + Old Drifter's Cloak
   + Cloakless Clawline
   + Old Volt Vessels
   + Old Scuttlebrace
