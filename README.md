@@ -58,4 +58,4 @@ A Quality of Life mod for Hollow Knight: Silksong
 
 ## Issues
 
-If you encounter an issue please make an Issue on the [Issue Page](https://github.com/Vitaxses/Silksong.QoL/issues/new)
+If you encounter any issues or have a feature request, please create an issue on the [Issue Page](https://github.com/Vitaxses/Silksong.QoL/issues/new)

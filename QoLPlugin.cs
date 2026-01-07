@@ -1,9 +1,6 @@
 using BepInEx;
 using BepInEx.Logging;
 
-using QoL.Patches.OldPatch;
-using UnityEngine.SceneManagement;
-
 namespace QoL;
 
 [BepInAutoPlugin(id: "io.github.vitaxses.qol")]
@@ -20,7 +17,6 @@ public sealed partial class QoLPlugin : BaseUnityPlugin
 		Logger = base.Logger;
 
         Configs.Bind(Config);
-        SceneManager.activeSceneChanged += OnSceneLoadPatch.OnSceneLoad;
         harmony.PatchAll();
 
         ModCompatibility.Init();
