@@ -35,7 +35,7 @@ internal static class FsmCutscene
                 hereState.GetFirstActionOfType<SendEventToRegister>()!.eventName = "BATTLE START REFIGHT";
             }
 
-            fsm.GetState("Hero Control")!.GetFirstActionOfType<PlayerDataVariableTest>()!.Enabled = PlayerData.instance.laceTowerDoorOpened;
+            //fsm.GetState("Hero Control")!.GetFirstActionOfType<PlayerDataVariableTest>()!.Enabled = PlayerData.instance.laceTowerDoorOpened;
 
             fsm.ChangeTransition("Lift Active", "INTERACT", "Transition");
             FsmState transitionState = fsm.GetState("Transition")!;
