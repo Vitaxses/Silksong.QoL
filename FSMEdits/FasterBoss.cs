@@ -28,7 +28,6 @@ public static class FsmFasterBoss
         state.InsertMethod(2, (action) => 
         {
             fsm.FindBoolVariable("Boss Encountered")!.RawValue = true;
-            action.Finish();
         });
         state.GetFirstActionOfType<WaitBool>()!.time = 1f;
 
@@ -58,7 +57,6 @@ public static class FsmFasterBoss
             fsm.GetState("Intro Roar")!.AddMethod((action) =>
             {
                 PD.instance.encounteredLastJudge = true;
-                action.Finish();
             });
         }
     }
@@ -123,7 +121,6 @@ public static class FsmFasterBoss
             TTState.InsertMethod(1, (a) =>
             {
                 fsm.FindBoolVariable("Encountered")!.RawValue = true;
-                a.Finish();
             });
 
             fsm.GetState("Trobbio Rise")!.GetFirstActionOfType<ConvertBoolToFloat>()!.trueValue = 0.2f;
