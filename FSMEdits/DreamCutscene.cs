@@ -52,7 +52,6 @@ internal static class DreamCutscene
             {
                 PlayerData.instance.hasSilkBomb = PlayerData.instance.defeatedFirstWeaver = true;
                 ToolItemManager.AutoEquip((ToolItem)fsm.Fsm.Variables.FindFsmObject("Equip Tool").Value);
-                action.Finish();
             }, 1);
 
             var action = fsm.GetState("Skill Msg")!.GetFirstActionOfType<SpawnSkillGetMsg>()!;
@@ -124,16 +123,9 @@ internal static class DreamCutscene
             return;
 
         string scene = fsm.gameObject.scene.name.Replace("_boss", "");
-        fsm.FindStringVariable("Memory Scene")!.Value = scene;
 
-        fsm.GetState("Memory?")!.DisableActionsOfType<StringCompare>();
-        
-        FsmState memorySceneState = fsm.GetState("Memory Scene")!;
-
-        fsm.ChangeTransition("Drop To Place", FsmEvent.Finished.Name, memorySceneState.Name);
-
-        memorySceneState.DisableAction(0); // Stop preloading
-        memorySceneState.GetFirstActionOfType<BeginSceneTransition>()!.entryGateName = "door_cinematicEnd";
+        if (scene != "Bone_05" && scene != "Ward_02" && scene != "Song_Tower_01")
+            return;
 
         fsm.GetState("Set Data")!.AddMethod((action) =>
         {
@@ -151,8 +143,18 @@ internal static class DreamCutscene
                     PlayerData.instance.defeatedLaceTower = true;
                 break;
             }
-            action.Finish();
         });
+
+        fsm.FindStringVariable("Memory Scene")!.Value = scene;
+
+        fsm.GetState("Memory?")!.DisableActionsOfType<StringCompare>();
+        
+        FsmState memorySceneState = fsm.GetState("Memory Scene")!;
+
+        fsm.ChangeTransition("Drop To Place", FsmEvent.Finished.Name, memorySceneState.Name);
+
+        memorySceneState.DisableAction(0); // Stop preloading
+        memorySceneState.GetFirstActionOfType<BeginSceneTransition>()!.entryGateName = "door_cinematicEnd";
     }
     
 }
