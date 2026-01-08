@@ -1,12 +1,11 @@
-
-namespace QoL.Patches;
+namespace QoL.Patches.OldPatch;
 
 // prob not the best way to achieve the old behaviour
 [HarmonyPatch(typeof(MazeController), nameof(MazeController.SubscribeDoorEntered))]
 internal static class OldMist
 {
     [HarmonyWrapSafe, HarmonyPrefix]
-    private static bool Prefix(MazeController __instance, TransitionPoint door)
+    private static bool Prefix_SubscribeDoorEntered(MazeController __instance, TransitionPoint door)
     {
         if (!Configs.OldMist.Value) return true;
         

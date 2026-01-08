@@ -2,15 +2,13 @@ using PD = PlayerData;
 
 namespace QoL.FSMEdits;
 
-public static class FasterBoss
+public static class FsmFasterBoss
 {
-    internal static void FasterBOSS(PlayMakerFSM fsm) {
+    internal static void FasterBoss(PlayMakerFSM fsm) {
         if (!Configs.FasterBossLoad.Value)
             return;
         
         FasterLace(fsm);
-        FasterBellBeast(fsm);
-        FasterMossMother(fsm);
         FasterGMS(fsm);
         FasterTrobbio(fsm);
         FasterWidow(fsm);
@@ -30,7 +28,6 @@ public static class FasterBoss
         state.InsertMethod(2, (action) => 
         {
             fsm.FindBoolVariable("Boss Encountered")!.RawValue = true;
-            action.Finish();
         });
         state.GetFirstActionOfType<WaitBool>()!.time = 1f;
 
@@ -60,7 +57,6 @@ public static class FasterBoss
             fsm.GetState("Intro Roar")!.AddMethod((action) =>
             {
                 PD.instance.encounteredLastJudge = true;
-                action.Finish();
             });
         }
     }
@@ -75,32 +71,23 @@ public static class FasterBoss
             Plugin.Logger.LogDebug("Modifying Lace1 Boss FSM");
 
             fsm.ChangeTransition("Encountered?", "MEET", "Refight");   
-        } else if (fsm.gameObject is { name: "Intro Control", scene.name: "Abyss_Cocoon" })
+        }
+        
+        else if (fsm.gameObject is { name: "Intro Control", scene.name: "Abyss_Cocoon" })
         {
             Plugin.Logger.LogDebug("Modifying LostLace Boss FSM");
 
-            fsm.ChangeTransition("Check Encountered", FsmEvent.Finished.Name, "ENCOUNTERED");
+            fsm.ChangeTransition("Check Encountered", FsmEvent.Finished.Name, "Encountered");
         }
-    }
 
-    internal static void FasterBellBeast(PlayMakerFSM fsm) 
-    {
-        if (fsm is not { FsmName: "Return State", name: "Boss Scene", gameObject.scene.name: "Bone_05_boss" } || !ToolItemManager.IsToolEquipped("Silk Spear"))
-            return;
+        else if (fsm is { name: "door_entry", FsmName: "Control", gameObject.scene.name: "Abyss_Cocoon" })
+        {
+            PlayerDataBoolTest pdbt = fsm.GetState("Silk Darkness?")!.GetFirstActionOfType<PlayerDataBoolTest>()!;
+            pdbt.isFalse = pdbt.isTrue;
 
-        Plugin.Logger.LogDebug("Modifying BellBeast Boss FSM");
-
-        fsm.ChangeTransition("Init", "FINISHED", "Set Return State");
-    }
-
-    internal static void FasterMossMother(PlayMakerFSM fsm) 
-    {
-        if (fsm is not { FsmName: "Control", name: "Mossbone Mother" })
-            return;
-
-        Plugin.Logger.LogDebug("Modifying MossMother Boss");
-
-        fsm.gameObject.transform.GetChild(12).position = new Vector3(65.7739f, 15.14f, 0.0062f);
+            PlayerDataBoolTest pdbt2 = fsm.GetState("Return Control")!.GetFirstActionOfType<PlayerDataBoolTest>()!;
+            pdbt2.isFalse = pdbt2.isTrue;
+        }
     }
 
     internal static void FasterGMS(PlayMakerFSM fsm) 
@@ -119,9 +106,9 @@ public static class FasterBoss
         {
             Plugin.Logger.LogDebug("Modifying Trobbio Boss FSM");
 
-            fsm.ChangeTransition("Init", "FINISHED", "Wait Refight");
+            fsm.ChangeTransition("Init", FsmEvent.Finished.Name, "Wait Refight");
             fsm.GetState("Start Pause")!.DisableAction(0); // Wait
-            fsm.ChangeTransition("Start Pause", "FINISHED", "Quick Entrance 1");
+            fsm.ChangeTransition("Start Pause", FsmEvent.Finished.Name, "Quick Entrance 1");
         }
 
         else if (fsm is { FsmName: "Control", name: "Tormented Trobbio" })
@@ -134,7 +121,6 @@ public static class FasterBoss
             TTState.InsertMethod(1, (a) =>
             {
                 fsm.FindBoolVariable("Encountered")!.RawValue = true;
-                a.Finish();
             });
 
             fsm.GetState("Trobbio Rise")!.GetFirstActionOfType<ConvertBoolToFloat>()!.trueValue = 0.2f;

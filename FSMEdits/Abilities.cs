@@ -24,7 +24,6 @@ internal static class Abilities
         leapState.AddMethod((action) =>
         {
             wasGroundedBool.RawValue = Configs.BeastBoosts.Value ? fsm.FindBoolVariable("Is Grounded")!.RawValue : false;
-            action.Finish();
         });
     }
 }

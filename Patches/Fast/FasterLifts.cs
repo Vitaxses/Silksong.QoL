@@ -1,4 +1,4 @@
-namespace QoL.Patches;
+namespace QoL.Patches.Fast;
 
 [HarmonyPatch(typeof(LiftControl), nameof(LiftControl.Start))]
 internal static class LiftControlPatch
@@ -14,7 +14,7 @@ internal static class LiftControlPatch
 
         if (sceneName != "Library_11")
         {
-            __instance.moveSpeed = Configs.SlowerOptions.Value ? 35 : 150;
+            __instance.moveSpeed = Configs.SlowerOptions.Value ? 35 : 100;
         }
         
         __instance.moveDelay = 0f;
@@ -31,7 +31,7 @@ internal static class ManualLiftPatch
         if (!Configs.FasterLifts.Value)
             return;
 
-        __instance.moveSpeed = Configs.SlowerOptions.Value ? 40 : 95;
+        __instance.moveSpeed = Configs.SlowerOptions.Value ? 40 : 75;
         __instance.acceleration = 12f;
         __instance.moveDelay = 0f;
     }

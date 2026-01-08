@@ -9,7 +9,7 @@ internal static class PlayMakerFSMPatch
     // Feel free to ignore nullity checks as they will be caught here
     private static readonly Action<PlayMakerFSM>[] edits =
     [
-        FasterBoss.FasterBOSS,
+        FsmFasterBoss.FasterBoss,
         FasterNpc.FasterNPC,
         Bellway.BellBeast,
         Bellway.Toll,
@@ -19,14 +19,25 @@ internal static class PlayMakerFSMPatch
         BeastlingCall.SilkSpecials,
         BeastlingCall.Beastlings,
         BeastlingCall.Needolin,
-        Cutscene.LastDive,
+        FsmCutscene.LastDive,
+        FsmCutscene.Lace2,
+        FsmCutscene.FleaTravel,
+        FsmCutscene.ShermaAct3Intro,
+        FsmCutscene.DivingBell,
+        DreamCutscene.Widow,
+        DreamCutscene.FirstSinner,
+        DreamCutscene.MemoryThread,
+        DreamCutscene.SilkHeart,
         ToolPatch.VoltVessel,
         ToolPatch.Scuttlebrace,
-        Abilities.NeedleStrike
+        Abilities.NeedleStrike,
+        SkipWeakness.SkipWeaknessPatch,
+        FastMenu.ShopUI,
+        FastMenu.QuestUIPrompt,
     ];
 
     [HarmonyPostfix]
-    private static void Postfix(PlayMakerFSM __instance)
+    private static void Postfix_Start(PlayMakerFSM __instance)
     {
         foreach (Action<PlayMakerFSM> edit in edits)
         {
