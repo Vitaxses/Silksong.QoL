@@ -1,10 +1,11 @@
 using BepInEx;
 using BepInEx.Logging;
+using FsmUtilPlugin = Silksong.FsmUtil.Plugin;
 
 namespace QoL;
 
 [BepInAutoPlugin(id: "io.github.vitaxses.qol")]
-[BepInDependency("org.silksong-modding.fsmutil", BepInDependency.DependencyFlags.HardDependency)]
+[BepInDependency(FsmUtilPlugin.Id, BepInDependency.DependencyFlags.HardDependency)]
 [BepInDependency(ModCompatibility.ModMenuGuid, BepInDependency.DependencyFlags.SoftDependency)]
 public sealed partial class QoLPlugin : BaseUnityPlugin
 {
