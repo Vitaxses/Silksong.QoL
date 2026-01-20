@@ -40,6 +40,9 @@ internal static class DialDoorBridgePatch
     private static void Postfix_Start(DialDoorBridge __instance)
     {
         if (Configs.InstantLevers.Value)
-            __instance.doorOpenDelay = __instance.moveDelay = __instance.moveDuration = Configs.SlowerOptions.Value ? 1.5f : 0f;
+        {
+            __instance.doorOpenDelay = __instance.moveDelay = 0f;
+            __instance.moveDuration = Configs.SlowerOptions.Value ? 1f : 0f;
+        }        
     }
 }
