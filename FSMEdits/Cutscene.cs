@@ -22,52 +22,48 @@ internal static class FsmCutscene
             return;
 
         if (fsm is { name: "door_cutsceneEndLaceTower", FsmName: "Travel Control" })
-        {   
-            FsmState arriveState = fsm.GetState("Lift Arrive?")!;
-            FsmState hereState = fsm.GetState("Lift Already Here")!;
+        {
+            fsm.ChangeTransition("Lift Arrive?", "FALSE", "Lift Already Here");
+            fsm.transform.GetChild(2).GetComponent<Animator>().speed = 5f; // Birdcage
+            fsm.GetState("Enter")!.GetFirstActionOfType<iTweenMoveTo>()!.speed = 25f;
 
-            PlayerDataBoolTest pdbTest = arriveState.GetFirstActionOfType<PlayerDataBoolTest>()!;
-            pdbTest.isTrue = pdbTest.isFalse;
-            fsm.ChangeTransition(arriveState.Name, "FALSE", hereState.Name);
-            
-            if (PlayerData.instance.encounteredLaceTower) 
+            var inLiftState = fsm.GetState("In Lift")!;
+            inLiftState.GetAction<Wait>(8)!.enabled = false;
+
+            inLiftState.GetAction<Wait>(10)!.time = inLiftState.GetAction<ScreenFader>(11)!.duration
+                = inLiftState.GetAction<Wait>(12)!.time = 0.5f;
+
+            if (PlayerData.instance.encounteredLaceTower)
             {
-                hereState.GetFirstActionOfType<SendEventToRegister>()!.eventName = "BATTLE START REFIGHT";
+                fsm.GetState("Lift Already Here")!.GetFirstActionOfType<SendEventToRegister>()!.eventName = "BATTLE START REFIGHT";
             }
 
-            //fsm.GetState("Hero Control")!.GetFirstActionOfType<PlayerDataVariableTest>()!.Enabled = PlayerData.instance.laceTowerDoorOpened;
-
-            fsm.ChangeTransition("Lift Active", "INTERACT", "Transition");
-            FsmState transitionState = fsm.GetState("Transition")!;
-            transitionState.InsertAction(0, new ToolsCutsceneControl()
-            {
-                SetInCutscene = true
-            });
-            transitionState.GetFirstActionOfType<BeginSceneTransition>()!.preventCameraFadeOut = true;
+            fsm.GetState("Hero Control")!.GetFirstActionOfType<PlayerDataVariableTest>()!.Enabled = PlayerData.instance.laceTowerDoorOpened;
         }
         
         else if (fsm is { FsmName: "Sequence", name: "Boss Scene", gameObject.scene.name: "Cog_Dancers"})
         {
-            fsm.ChangeTransition("Idle Unlocked", "LIFT INSPECTED", "Travel Instant");
-            FsmState travelState = fsm.GetState("Travel Instant")!;
-            travelState.InsertAction(0, new ToolsCutsceneControl()
-            {
-                SetInCutscene = true
-            });
-            travelState.GetFirstActionOfType<ScreenFader>()!.duration = 0.2f;
+            var coreTransform = fsm.transform.GetChild(12);
+            coreTransform.GetComponent<Animator>().speed = 3f; // Core Rotator
 
-            fsm.ChangeTransition("Door Entry", "TRUE", "Hero Exited");
+            coreTransform.GetChild(1).GetChild(2).GetChild(9).GetComponent<Animator>().speed = 5f; // Birdcage
+
+            fsm.GetState("Get In Lift Start")!.InsertMethod((a) =>
+            {
+                var inspect = fsm.transform.GetChild(5).gameObject;
+                inspect.GetComponent<PlayMakerNPC>().Deactivate(false);
+                inspect.SetActive(false);
+            }, 8);
+
+            fsm.GetState("In Lift")!.GetLastActionOfType<Wait>()!.time = 0.5f;
+
+            fsm.GetState("Get In Lift Move")!.GetFirstActionOfType<iTweenMoveTo>()!.speed = fsm.GetState("Hero Exit")!.GetFirstActionOfType<iTweenMoveTo>()!.speed = 15f;
+
+            fsm.GetState("Fade Down")!.GetFirstActionOfType<Wait>()!.time = 0.7f;
 
             FsmState exitedState = fsm.GetState("Hero Exited")!;
-            exitedState.GetFirstActionOfType<Tk2dPlayAnimationWait>()!.Enabled = false;
-
-            exitedState.AddAction(new AnimatorPlay()
-            {
-                gameObject = fsm.GetState("Move Down")!.GetFirstActionOfType<AnimatorPlay>()!.gameObject,
-                stateName = "Open",
-                layer = 0,
-                normalizedTime = 3f
-            });
+            var playAnimationWaitAction = exitedState.GetFirstActionOfType<Tk2dPlayAnimationWait>()!;
+            playAnimationWaitAction.Enabled = false;
         }
     }
 
