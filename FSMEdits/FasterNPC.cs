@@ -5,7 +5,18 @@ internal static class FasterNpc
 
     internal static void FasterNPC(PlayMakerFSM fsm)
     {
-        if (!Configs.FasterNPC.Value || fsm.FsmName != "Dialogue")
+        if (!Configs.FasterNPC.Value)
+            return;
+
+        if (fsm is { FsmName: "Sequence", name: "Boss Scene", gameObject.scene.name: "Cog_Dancers"})
+        {
+            if (!PlayerData.instance.defeatedCogworkDancers)
+                fsm.ChangeTransition("Repeat?", "CANCEL", "All Talk Choose Dlg");
+            
+            fsm.ChangeTransition("Statues End Singing", FsmEvent.Finished.Name, "Return Control");
+        }
+
+        if (fsm.FsmName != "Dialogue")
             return;
 
         if (fsm.gameObject is { name: "Seamstress", scene.name: "Bone_East_Umbrella" }) {

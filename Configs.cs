@@ -26,6 +26,8 @@ public static class Configs
     public static ConfigEntry<bool> OldScuttlebrace { get; private set; } = null!;
     public static ConfigEntry<bool> OldMist { get; private set; } = null!;
     public static ConfigEntry<bool> TrobbioSkip { get; private set; } = null!;
+    public static ConfigEntry<bool> OldSkullTyrantLever { get; private set; } = null!;
+    public static ConfigEntry<bool> OldPutrifiedPlanks { get; private set; } = null!;
 
     public static ConfigEntry<bool> SkipCutscene { get; private set; } = null!;
     public static ConfigEntry<bool> SkipDreamCutscene { get; private set; } = null!;
@@ -59,11 +61,13 @@ public static class Configs
         
         OldFloat = config.Bind("Old Patch Settings", "Drifters Cloak Override", false, "Re-adds float override input (Down + Jump).");
         CloaklessClawline = config.Bind("Old Patch Settings", "Cloakless Clawline", false, "Wall requiring the Drifter's Cloak in Underworks is now clingable.");
-        OldVoltVessels = config.Bind("Old Patch Settings", "Old Volt Vessels", false, "Allows Volt Vessels to be pogoed with tools and break the one-way floor in the Putrified Ducts.");
+        OldVoltVessels = config.Bind("Old Patch Settings", "Old Volt Vessels", false, "Allows Volt Vessels to be pogoed with tools.");
         BeastBoosts = config.Bind("Old Patch Settings", "Beast Boosts", false, "The Beast's Crest Needle Art occasionally grants extra height.");
         OldScuttlebrace = config.Bind("Old Patch Settings", "Old Scuttlebrace", false, "Scuttlebrace Allows wall-jumping off unclingable walls.");
         OldMist = config.Bind("Old Patch Settings", "Old Mist", false, "Enables room juggling in the Mist.");
         TrobbioSkip = config.Bind("Old Patch Settings", "Trobbio Skip", false, "Allows tools to hit the slide platforms in the Whispering Vaults.");
+        OldSkullTyrantLever = config.Bind("Old Patch Settings", "Skull Tyrant Lever Skip", false, "Allows hitting the Skull Tyrant shortcut lever through the gate.");
+        OldPutrifiedPlanks = config.Bind("Old Patch Settings", "Old Putrified Ducts Planks", false, "Allows certain tools to break the planks between Bilewater and Putrified Ducts.");
 
         SkipCutscene = config.Bind("Cutscene Settings", "Skip Cutscenes Faster", true, "Skips cutscenes faster.");
         SkipDreamCutscene = config.Bind("Cutscene Settings", "Skip Dream Cutscenes", true, "Skips dream cutscenes (Needolin & First Sinner).");

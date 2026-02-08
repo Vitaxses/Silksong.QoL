@@ -1,15 +1,14 @@
 namespace QoL.Patches.Cutscene;
 
-[HarmonyPatch(typeof(ToolItem), nameof(ToolItem.Unlock))]
+[HarmonyPatch(typeof(PlayerData), nameof(PlayerData.SetupNewPlayerData))]
 internal static class SkipTutorialTool
 {
-    [HarmonyWrapSafe, HarmonyPrefix]
-    private static void Prefix_Unlock()
+    [HarmonyWrapSafe, HarmonyPostfix]
+    private static void Postfix_SetupNewPlayerData(PlayerData __instance)
     {
         if (!Configs.SkipTutorialToolMsg.Value)
             return;
             
-        PlayerData pd = PlayerData.instance;
-        pd.SeenToolGetPrompt = pd.SeenToolWeaponGetPrompt = true;
+        __instance.SeenToolGetPrompt = __instance.SeenToolWeaponGetPrompt = true;
     }
 }

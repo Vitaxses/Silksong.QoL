@@ -19,6 +19,25 @@ internal static class Lever_tk2dPatch
     {
         if (Configs.InstantLevers.Value)
             __instance.openGateDelay = 0f;
+
+        if (Configs.OldSkullTyrantLever.Value && __instance.gameObject is { name: "Song_lever_side", scene.name: "Bone_10" })
+        {
+            __instance.transform.GetChild(2).GetComponent<BoxCollider2D>().offset = new(-4.5f, 2.77f); // Can Hit Range
+        }
+    }
+}
+
+[HarmonyPatch(typeof(Gate), nameof(Gate.Start))]
+internal static class GatePatch
+{
+    [HarmonyWrapSafe, HarmonyPostfix]
+    private static void Postfix_Start(Gate __instance)
+    {
+        if (Configs.OldPutrifiedPlanks.Value && __instance.gameObject is { name: "drop_planks", scene.name: "Aqueduct_04" })
+        {
+            var canHitCollidder = __instance.transform.GetChild(3).GetComponent<BoxCollider2D>();
+            canHitCollidder.size = new(canHitCollidder.size.x * 2, 50f);
+        }
     }
 }
 

@@ -11,7 +11,7 @@ internal static class DreamCutscene
         {
             var pd = PlayerData.instance;
 
-            if (!(Configs.SkipDreamCutsceneFully.Value && pd.hasWalljump && (pd.hasDash || pd.hasHarpoonDash || pd.hasBrolly || pd.hasDoubleJump)))
+            if (!Configs.SkipDreamCutsceneFully.Value)
             {
                 return;
             }
@@ -39,7 +39,7 @@ internal static class DreamCutscene
         {
             var pd = PlayerData.instance;
             
-            if (!(Configs.SkipDreamCutsceneFully.Value && pd.hasWalljump && pd.hasDoubleJump && pd.hasHarpoonDash))
+            if (!Configs.SkipDreamCutsceneFully.Value)
             {
                 return;
             }

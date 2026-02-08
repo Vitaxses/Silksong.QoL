@@ -63,5 +63,6 @@ A Quality of Life mod for Hollow Knight: Silksong
 If you encounter any issues or have a feature request, please create an issue on the [Issue Page](https://github.com/Vitaxses/Silksong.QoL/issues/new)
 
 ## Credits
-Clazex - FastFastTravel and Skip Last Dive
-Vitaxses - All other features
+Clazex - FastFastTravel and Skip Last Dive.
+
+Vitaxses - All other features.
