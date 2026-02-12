@@ -11,6 +11,19 @@ internal static class LeverPatch
     }
 }
 
+[HarmonyPatch(typeof(Trapdoor), nameof(Trapdoor.Awake))]
+internal static class TrapdoorPatch
+{
+    [HarmonyWrapSafe, HarmonyPostfix]
+    private static void Postfix_Awake(Trapdoor __instance)
+    {
+        if (Configs.InstantLevers.Value)
+        {
+            __instance.retractStartDelay = __instance.retractEndDelay = __instance.openWaitTime = 0f;
+        }
+    }
+}
+
 [HarmonyPatch(typeof(Lever_tk2d), nameof(Lever_tk2d.Start))]
 internal static class Lever_tk2dPatch
 {

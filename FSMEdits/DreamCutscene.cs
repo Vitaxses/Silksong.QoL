@@ -9,8 +9,6 @@ internal static class DreamCutscene
 
         if (fsm is { FsmName: "Control", name: "Spinner Boss" })
         {
-            var pd = PlayerData.instance;
-
             if (!Configs.SkipDreamCutsceneFully.Value)
             {
                 return;
@@ -37,8 +35,6 @@ internal static class DreamCutscene
 
         if (fsm is { FsmName: "Inspection", name: "Shrine First Weaver NPC" })
         {
-            var pd = PlayerData.instance;
-            
             if (!Configs.SkipDreamCutsceneFully.Value)
             {
                 return;
