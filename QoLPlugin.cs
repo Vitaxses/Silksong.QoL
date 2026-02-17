@@ -1,13 +1,17 @@
 using BepInEx;
 using BepInEx.Logging;
 using FsmUtilPlugin = Silksong.FsmUtil.Plugin;
+using Silksong.ModMenu;
+using Silksong.ModMenu.Plugin;
+using Silksong.ModMenu.Screens;
+using Silksong.ModMenu.Elements;
 
 namespace QoL;
 
+[BepInDependency(FsmUtilPlugin.Id)]
+[BepInDependency(ModMenuPlugin.Id)]
 [BepInAutoPlugin(id: "io.github.vitaxses.qol")]
-[BepInDependency(FsmUtilPlugin.Id, BepInDependency.DependencyFlags.HardDependency)]
-[BepInDependency(ModCompatibility.ModMenuGuid, BepInDependency.DependencyFlags.SoftDependency)]
-public sealed partial class QoLPlugin : BaseUnityPlugin
+public sealed partial class QoLPlugin : BaseUnityPlugin, IModMenuCustomMenu
 {
     private readonly Harmony harmony = new(Id);
 
@@ -20,8 +24,41 @@ public sealed partial class QoLPlugin : BaseUnityPlugin
         Configs.Bind(Config);
         harmony.PatchAll();
 
-        ModCompatibility.Init();
-
         Logger.LogInfo($"Plugin {Name} ({Id}) v{Version} has loaded!");
     }
+
+    public string ModMenuName() => Name;
+
+    public AbstractMenuScreen BuildCustomMenu()
+    {
+        PaginatedMenuScreenBuilder builder = new(Name);
+        var factory = new ConfigEntryFactory();
+
+        var sectionEntries = Config
+            .GroupBy(entry => entry.Value.Definition.Section)
+            .Where(g => g.Any())
+            .ToList();
+
+        foreach (var section in sectionEntries)
+        {
+            var sectionBuilder = new PaginatedMenuScreenBuilder(section.Key, 10);
+
+            foreach (var entry in section)
+            {
+                if (factory.GenerateMenuElement(entry.Value, out MenuElement? element))
+                    sectionBuilder.Add(element);
+            }
+
+            var sectionMenu = sectionBuilder.Build();
+            var sectionButton = new TextButton(LocalizedText.Raw(section.Key))
+            {
+                OnSubmit = () => MenuScreenNavigation.Show(sectionMenu, HistoryMode.Add)
+            };
+
+            builder.Add(sectionButton);
+        }
+
+        return builder.Build();
+    }
+
 }

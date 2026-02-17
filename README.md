@@ -4,8 +4,7 @@ A Quality of Life mod for Hollow Knight: Silksong
 
 ## Notes
 
-- This mod requires [FSM Util](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/FsmUtil/) to be installed, if this is not installed the mod will not work.
-- You can edit the config by installing [ModMenu](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/ModMenu/) and using the in-game Mod Options menu, or by manually editing the config file at `Hollow Knight Silksong/BepInEx/config/io.github.vitaxses.qol/`.
+- This mod requires [FSM Util](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/FsmUtil/) and [ModMenu](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/ModMenu/) to be installed, if they are not installed the mod will not work.
 
 ## Features
 
@@ -43,6 +42,8 @@ A Quality of Life mod for Hollow Knight: Silksong
   + Old Mist
   + Beast Boosts
   + Trobbio Skip
+  + Putrified Ducts Planks
+  + Skull Tyrant Lever Skip
 
 ## Manual Installation
 
@@ -64,5 +65,3 @@ If you encounter any issues or have a feature request, please create an issue on
 
 ## Credits
 Clazex - FastFastTravel and Skip Last Dive.
-
-Vitaxses - All other features.
