@@ -4,7 +4,7 @@ A Quality of Life mod for Hollow Knight: Silksong
 
 ## Notes
 
-- This mod requires [FSM Util](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/FsmUtil/) and [ModMenu](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/ModMenu/) to be installed, if they are not installed the mod will not work.
+- This mod requires [FsmUtil](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/FsmUtil/) and [ModMenu](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/ModMenu/) to be installed, if they are not installed the mod will not work.
 
 ## Features
 
