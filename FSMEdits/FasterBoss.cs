@@ -14,6 +14,15 @@ public static class FsmFasterBoss
         FasterWidow(fsm);
         FasterLastJudge(fsm);
         FasterUnravelled(fsm);
+        FasterCraggler(fsm);
+    }
+
+    private static void FasterCraggler(PlayMakerFSM fsm)
+    {
+        if (fsm is not { FsmName: "Control", name: "Roof Crab" })
+            return;
+
+        fsm.ChangeTransition("Meet?", "ROAR", "Attack Antic");
     }
 
     private static void FasterUnravelled(PlayMakerFSM fsm)
