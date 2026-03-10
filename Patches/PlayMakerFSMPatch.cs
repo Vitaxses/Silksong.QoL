@@ -28,7 +28,6 @@ internal static class PlayMakerFSMPatch
         DreamCutscene.FirstSinner,
         DreamCutscene.MemoryThread,
         DreamCutscene.SilkHeart,
-        ToolPatch.VoltVessel,
         ToolPatch.Scuttlebrace,
         Abilities.NeedleStrike,
         SkipWeakness.SkipWeaknessPatch,
