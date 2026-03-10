@@ -48,7 +48,7 @@ public static class Configs
         FasterBellwayTravel = config.Bind("Bellway Settings", "Faster Bellway Travel Animation", true, "Speeds up arrival and departure animations for Bellway travel.");
         FasterBellwayBuy = config.Bind("Bellway Settings", "Faster Bellway Purchase", true, "Speeds up the animation when buying Bellway stations and calls the Bell Beast afterwards.");
         NoBellBeastSleep = config.Bind("Bellway Settings", "BellBeast Always Awake", true, "Keeps the Bell Beast always awake.");
-        BellBeastFreeWill = config.Bind("Bellway Settings", "BellBeast Has Free Will", false, "Makes the Bell Beast always ready at your location.");
+        BellBeastFreeWill = config.Bind("Bellway Settings", "BellBeast Always Ready", false, "Makes the Bell Beast always ready at your location.");
         
         FasterBeastlingCall = config.Bind("Bellway Settings", "Faster Beastling Call", true, "Speeds up Beastling call performance and travel.");
         SkipBeastlingCallPerformance = config.Bind("Bellway Settings", "Skip Beastling Call Performance", false, "Skips the Beastling call performance entirely.");

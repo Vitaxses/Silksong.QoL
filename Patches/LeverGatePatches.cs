@@ -60,8 +60,12 @@ internal static class PressurePlateBasePatch
     [HarmonyWrapSafe, HarmonyPostfix]
     private static void Postfix_Start(PressurePlateBase __instance)
     {
-        if (Configs.InstantLevers.Value)
-            __instance.gateOpenDelay = __instance.waitTime = __instance.dropTime = 0f;
+        if (!Configs.InstantLevers.Value)
+            return;
+
+        __instance.gateOpenDelay = 0f;
+        __instance.dropTime = 0.1f;
+        __instance.waitTime = 0.1f;
     }
 }
 
