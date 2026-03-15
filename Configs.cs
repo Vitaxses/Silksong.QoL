@@ -27,6 +27,7 @@ public static class Configs
     public static ConfigEntry<bool> OldMist { get; private set; } = null!;
     public static ConfigEntry<bool> TrobbioSkip { get; private set; } = null!;
     public static ConfigEntry<bool> OldSkullTyrantLever { get; private set; } = null!;
+    public static ConfigEntry<bool> RemoveFaydownNeedolinCheck { get; private set; } = null!;
     public static ConfigEntry<bool> OldPutrifiedPlanks { get; private set; } = null!;
 
     public static ConfigEntry<bool> SkipCutscene { get; private set; } = null!;
@@ -67,6 +68,7 @@ public static class Configs
         OldMist = config.Bind("Old Patch Settings", "Old Mist", false, "Enables room juggling in the Mist.");
         TrobbioSkip = config.Bind("Old Patch Settings", "Trobbio Skip", false, "Allows tools to hit the slide platforms in the Whispering Vaults.");
         OldSkullTyrantLever = config.Bind("Old Patch Settings", "Skull Tyrant Lever Skip", false, "Allows hitting the Skull Tyrant shortcut lever through the gate.");
+        RemoveFaydownNeedolinCheck = config.Bind("Old Patch Settings", "Faydown Cloak Without Needolin", false, "Allows getting the Faydown Cloak without the Needolin.");
         OldPutrifiedPlanks = config.Bind("Old Patch Settings", "Old Putrified Ducts Planks", false, "Allows certain tools to break the planks between Bilewater and Putrified Ducts.");
 
         SkipCutscene = config.Bind("Cutscene Settings", "Skip Cutscenes Faster", true, "Skips cutscenes faster.");

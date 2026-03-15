@@ -26,4 +26,14 @@ internal static class Abilities
             wasGroundedBool.RawValue = Configs.BeastBoosts.Value ? fsm.FindBoolVariable("Is Grounded")!.RawValue : false;
         });
     }
+
+    internal static void FaydownNeedolinCheck(PlayMakerFSM fsm)
+    {
+        if (!Configs.RemoveFaydownNeedolinCheck.Value || fsm is not { FsmName: "DJ Get Sequence"})
+            return;
+        
+        Plugin.Logger.LogDebug("Modifying Faydown Get Sequence FSM");
+
+        fsm.ChangeTransition("Has Needolin?", "FALSE", "Dlg End");
+    }
 }

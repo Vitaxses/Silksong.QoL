@@ -41,7 +41,7 @@ public sealed partial class QoLPlugin : BaseUnityPlugin, IModMenuCustomMenu
 
         foreach (var section in sectionEntries)
         {
-            var sectionBuilder = new PaginatedMenuScreenBuilder(section.Key, 10);
+            var sectionBuilder = new PaginatedMenuScreenBuilder(section.Key, 8);
 
             foreach (var entry in section)
             {

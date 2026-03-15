@@ -14,7 +14,7 @@ internal static class LiftControlPatch
 
         if (sceneName != "Library_11")
         {
-            __instance.moveSpeed = Configs.SlowerOptions.Value ? 35 : 55;
+            __instance.moveSpeed = Configs.SlowerOptions.Value ? 35 : 75;
         }
         
         __instance.moveDelay = 0f;
