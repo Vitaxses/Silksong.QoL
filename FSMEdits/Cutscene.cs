@@ -169,5 +169,16 @@ internal static class FsmCutscene
             fadeWait.Enabled = true;
         }
     }
-    
+
+    internal static void CitadelEntrance(PlayMakerFSM fsm)
+    {
+        if (!Configs.SkipCutscene.Value || fsm is not { FsmName: "Cutscene Control", name: "right_cutsceneEntry" })
+            return;
+
+        fsm.ChangeTransition("State 1", "FINISH ENTRY", "Fade In");
+        fsm.GetFirstActionOfType<ScreenFader>("Fade In")!.duration = 0.5f;
+        fsm.ChangeTransition("Fade In", FsmEvent.Finished.Name, "End");
+
+        fsm.DisableActions("State 1", 2, 3, 4);
+    }
 }

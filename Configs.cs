@@ -71,7 +71,7 @@ public static class Configs
         RemoveFaydownNeedolinCheck = config.Bind("Old Patch Settings", "Faydown Cloak Without Needolin", false, "Allows getting the Faydown Cloak without the Needolin.");
         OldPutrifiedPlanks = config.Bind("Old Patch Settings", "Old Putrified Ducts Planks", false, "Allows certain tools to break the planks between Bilewater and Putrified Ducts.");
 
-        SkipCutscene = config.Bind("Cutscene Settings", "Skip Cutscenes Faster", true, "Skips cutscenes faster.");
+        SkipCutscene = config.Bind("Cutscene Settings", "Skip Cutscenes", true, "Skips cutscenes.");
         SkipDreamCutscene = config.Bind("Cutscene Settings", "Skip Dream Cutscenes", true, "Skips dream cutscenes (Needolin & First Sinner).");
         SkipDreamCutsceneFully = config.Bind("Cutscene Settings", "Fully Skip Dream Scenes", false, "Skips dream scenes entirely.");
         SkipTutorialToolMsg = config.Bind("Cutscene Settings", "Skip Tool Pickup Tutorial", true, "Skips the first tool pickup tutorial.");

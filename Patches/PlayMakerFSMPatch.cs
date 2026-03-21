@@ -24,6 +24,7 @@ internal static class PlayMakerFSMPatch
         FsmCutscene.FleaTravel,
         FsmCutscene.ShermaAct3Intro,
         FsmCutscene.DivingBell,
+        FsmCutscene.CitadelEntrance,
         DreamCutscene.Widow,
         DreamCutscene.FirstSinner,
         DreamCutscene.MemoryThread,
