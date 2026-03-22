@@ -177,6 +177,7 @@ internal static class FsmCutscene
 
         fsm.ChangeTransition("State 1", "FINISH ENTRY", "Fade In");
         fsm.GetFirstActionOfType<ScreenFader>("Fade In")!.duration = 0.5f;
+        fsm.GetFirstActionOfType<Wait>("Fade In")!.time = 0.5f;
         fsm.ChangeTransition("Fade In", FsmEvent.Finished.Name, "End");
 
         fsm.DisableActions("State 1", 2, 3, 4);
