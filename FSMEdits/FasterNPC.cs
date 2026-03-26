@@ -2,7 +2,6 @@ namespace QoL.FSMEdits;
 
 internal static class FasterNpc
 {
-
     internal static void FasterNPC(PlayMakerFSM fsm)
     {
         if (!Configs.FasterNPC.Value)
@@ -16,6 +15,7 @@ internal static class FasterNpc
             fsm.ChangeTransition("Statues End Singing", FsmEvent.Finished.Name, "Return Control");
         } 
         
+        /*
         else if (fsm is { FsmName: "Control", name: "Lace NPC Citadel Meet" })
         {
             fsm.DisableActionsOfType<SetMeshRenderer>("Init");
@@ -35,7 +35,8 @@ internal static class FasterNpc
             fsm.DisableActionsOfType<Wait>("Quest Update");
             fsm.GetFirstActionOfType<Wait>("Wake Rumble")!.time = 0.5f;
         }
-
+        */
+        
         if (fsm.FsmName != "Dialogue")
             return;
 
