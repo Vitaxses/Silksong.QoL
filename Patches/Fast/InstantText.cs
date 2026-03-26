@@ -9,7 +9,7 @@ internal static class DialogueBoxPatch
         if (!Configs.InstantText.Value)
             return;
 
-        __instance.currentRevealSpeed = __instance.regularRevealSpeed = __instance.fastRevealSpeed *= 90;
+        __instance.currentRevealSpeed = __instance.regularRevealSpeed = __instance.fastRevealSpeed *= 150;
         __instance.animator.speed = Configs.SlowerOptions.Value ? 5f : 10f;
     }
 }

@@ -10,7 +10,7 @@ internal static class CloaklessClawline
             return;
 
         Plugin.Logger.LogDebug("Modifying Cloakless Clawline Wall Grab");
-        __instance.transform.position = new Vector3(12.22f, 7.64f, 0f);
+        __instance.transform.position = new Vector3(12.30f, 7.64f, 0f);
         UObject.Destroy(__instance);
     }
 }

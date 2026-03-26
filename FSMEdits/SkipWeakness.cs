@@ -12,6 +12,11 @@ internal static class SkipWeakness
             Plugin.Logger.LogDebug("Modifying Churchkeeper Dialogue");
             PlayerData.instance.churchKeeperIntro = true;
             fsm.ChangeTransition("Pause", FsmEvent.Finished.Name, "Set End");
+            fsm.GetState("Set End")!.AddMethod(
+            (action) =>
+            {
+                fsm.SendEvent("GET ITEM MSG END");
+            });
         } 
         
         else if (fsm is { name: "Weakness Scene", FsmName: "Control" })

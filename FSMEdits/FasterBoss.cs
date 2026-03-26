@@ -4,7 +4,8 @@ namespace QoL.FSMEdits;
 
 public static class FsmFasterBoss
 {
-    internal static void FasterBoss(PlayMakerFSM fsm) {
+    internal static void FasterBoss(PlayMakerFSM fsm) 
+    {
         if (!Configs.FasterBossLoad.Value)
             return;
         
@@ -79,7 +80,7 @@ public static class FsmFasterBoss
         {
             Plugin.Logger.LogDebug("Modifying Lace1 Boss FSM");
 
-            fsm.ChangeTransition("Encountered?", "MEET", "Refight");   
+            fsm.ChangeTransition("Encountered?", "MEET", "Refight");
         }
         
         else if (fsm.gameObject is { name: "Intro Control", scene.name: "Abyss_Cocoon" })
@@ -105,8 +106,12 @@ public static class FsmFasterBoss
             return;
 
         Plugin.Logger.LogDebug("Modifying GMS Boss FSM");
-
-        fsm.ChangeTransition("Challenge Cam", "CHALLENGE", "Quick Start");
+    
+        fsm.GetFirstActionOfType<Wait>("Wait For Beat End")!.time = 0.5f;
+        fsm.GetFirstActionOfType<AnimatorPlay>("Burst Anim")!.normalizedTime = 5f;
+        fsm.DisableActionsOfType<ListenForAnimationEvent>("Burst Anim");
+        fsm.GetFirstActionOfType<Wait>("Ready Wait")!.time = 0.2f;
+        fsm.GetFirstActionOfType<Wait>("Intro Shake")!.time = 1f;
     }
     
     internal static void FasterTrobbio(PlayMakerFSM fsm)
@@ -125,11 +130,10 @@ public static class FsmFasterBoss
             Plugin.Logger.LogDebug("Modifying TormentedTrobbio Boss FSM");
             
             fsm.ChangeTransition("State", "MEET", "Start Pause");
-            FsmState TTState = fsm.GetState("State")!;
-            TTState.DisableAction(1); // GetPlayerDataBool
-            TTState.InsertMethod(1, (a) =>
+            fsm.GetState("State")!.DisableAction(1); // GetPlayerDataBool
+            fsm.GetState("Wait")!.AddMethod((a) =>
             {
-                fsm.FindBoolVariable("Encountered")!.RawValue = true;
+                fsm.FindBoolVariable("Encountered")!.Value = true;
             });
 
             fsm.GetState("Trobbio Rise")!.GetFirstActionOfType<ConvertBoolToFloat>()!.trueValue = 0.2f;

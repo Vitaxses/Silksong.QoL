@@ -19,7 +19,7 @@ A Quality of Life mod for Hollow Knight: Silksong
   + Faster Travel Animations
   + Faster Bellway Station Buy
   + Bell Beast Always Awake
-  + Bell Beast Always Ready At Your Location (BellBeast Free Will)
+  + Bell Beast Always Ready At Your Location
   + Faster Beastling Call
     - Skip Beastling Call Performance
 - Ventrica

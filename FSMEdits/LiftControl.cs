@@ -17,7 +17,7 @@ internal static class FsmLiftControl
         Plugin.Logger.LogDebug("Modifying Lift FSM");
 
         // Default is 8
-        fsm.Fsm.GetFsmFloat("Speed")?.RawValue = Configs.SlowerOptions.Value ? 20 : 32f;
+        fsm.Fsm.GetFsmFloat("Speed")?.RawValue = Configs.SlowerOptions.Value ? 18 : 25f;
 
         float speedDown =  GameManager.instance.sceneName == "Room_Forge" ? -30f : -60f;
         if (Configs.SlowerOptions.Value) speedDown *= 0.75f;

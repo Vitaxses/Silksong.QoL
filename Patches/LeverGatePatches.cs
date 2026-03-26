@@ -64,8 +64,7 @@ internal static class PressurePlateBasePatch
             return;
 
         __instance.gateOpenDelay = 0f;
-        __instance.dropTime = 0.1f;
-        __instance.waitTime = 0.1f;
+        __instance.dropTime = __instance.waitTime = Configs.SlowerOptions.Value ? 0.1f : 0f;
     }
 }
 
