@@ -27,7 +27,7 @@ public sealed partial class QoLPlugin : BaseUnityPlugin, IModMenuCustomMenu
         Logger.LogInfo($"Plugin {Name} ({Id}) v{Version} has loaded!");
     }
 
-    public string ModMenuName() => Name;
+    public LocalizedText ModMenuName() => Name;
 
     public AbstractMenuScreen BuildCustomMenu()
     {
