@@ -23,6 +23,7 @@ public static class Configs
     public static ConfigEntry<bool> CloaklessClawline { get; private set; } = null!;
     public static ConfigEntry<bool> OldVoltVessels { get; private set; } = null!;
     public static ConfigEntry<bool> BeastBoosts { get; private set; } = null!;
+    public static ConfigEntry<bool> PinPogo { get; private set; } = null!;
     public static ConfigEntry<bool> OldScuttlebrace { get; private set; } = null!;
     public static ConfigEntry<bool> OldMist { get; private set; } = null!;
     public static ConfigEntry<bool> TrobbioSkip { get; private set; } = null!;
@@ -44,43 +45,52 @@ public static class Configs
 
     internal static void Bind(ConfigFile config)
     {
-        FleaTracked = config.Bind("Tracker Settings", "Count Fleas", false, "Counts saved fleas.");
-
-        FasterBellwayTravel = config.Bind("Bellway Settings", "Faster Bellway Travel Animation", true, "Speeds up arrival and departure animations for Bellway travel.");
-        FasterBellwayBuy = config.Bind("Bellway Settings", "Faster Bellway Purchase", true, "Speeds up the animation when buying Bellway stations and calls the Bell Beast afterwards.");
-        NoBellBeastSleep = config.Bind("Bellway Settings", "BellBeast Always Awake", true, "Keeps the Bell Beast always awake.");
-        BellBeastFreeWill = config.Bind("Bellway Settings", "BellBeast Always Ready", false, "Makes the Bell Beast always ready at your location.");
+        var TrackerSection = "Tracker Settings";
+        var BellwaySection = "Bellway Settings";
+        var VentricaSection = "Ventrica Settings";
+        var NPCSection = "NPC Settings";
+        var OldPatchSection = "Old Patch Settings";
+        var CutsceneSection = "Cutscene Settings";
+        var FastSection = "Fast Settings";
         
-        FasterBeastlingCall = config.Bind("Bellway Settings", "Faster Beastling Call", true, "Speeds up Beastling call performance and travel.");
-        SkipBeastlingCallPerformance = config.Bind("Bellway Settings", "Skip Beastling Call Performance", false, "Skips the Beastling call performance entirely.");
-
-        FasterVentricaTravel = config.Bind("Ventrica Settings", "Faster Ventrica Travel Animation", true, "Speeds up arrival and departure animations for Ventrica travel.");
-        FasterVentricaBuy = config.Bind("Ventrica Settings", "Faster Ventrica Purchase", true, "Speeds up the animation when buying Ventrica stations.");
-
-        FasterNPC = config.Bind("NPC Settings", "Faster NPC", true, "Removes some introductory dialogue for NPCs.");
-        FasterBossLoad = config.Bind("NPC Settings", "Faster Boss Start", false, "Removes first-time events for bosses.");
+        FleaTracked = config.Bind(TrackerSection, "Count Fleas", false, "Counts saved fleas");
         
-        OldFloat = config.Bind("Old Patch Settings", "Drifters Cloak Override", false, "Re-adds float override input (Down + Jump).");
-        CloaklessClawline = config.Bind("Old Patch Settings", "Cloakless Clawline", false, "Wall requiring the Drifter's Cloak in Underworks is now clingable.");
-        OldVoltVessels = config.Bind("Old Patch Settings", "Old Volt Vessels", false, "Allows Volt Vessels to be pogoed with tools.");
-        BeastBoosts = config.Bind("Old Patch Settings", "Beast Boosts", false, "The Beast's Crest Needle Art occasionally grants extra height.");
-        OldScuttlebrace = config.Bind("Old Patch Settings", "Old Scuttlebrace", false, "Scuttlebrace Allows wall-jumping off unclingable walls.");
-        OldMist = config.Bind("Old Patch Settings", "Old Mist", false, "Enables room juggling in the Mist.");
-        TrobbioSkip = config.Bind("Old Patch Settings", "Trobbio Skip", false, "Allows tools to hit the slide platforms in the Whispering Vaults.");
-        OldSkullTyrantLever = config.Bind("Old Patch Settings", "Skull Tyrant Lever Skip", false, "Allows hitting the Skull Tyrant shortcut lever through the gate.");
-        RemoveFaydownNeedolinCheck = config.Bind("Old Patch Settings", "Faydown Cloak Without Needolin", false, "Allows getting the Faydown Cloak without the Needolin.");
-        OldPutrifiedPlanks = config.Bind("Old Patch Settings", "Old Putrified Ducts Planks", false, "Allows certain tools to break the planks between Bilewater and Putrified Ducts.");
+        FasterBellwayTravel = config.Bind(BellwaySection, "Faster Bellway Travel Animation", true, "Speeds up arrival and departure animations for Bellway travel");
+        FasterBellwayBuy = config.Bind(BellwaySection, "Faster Bellway Purchase", true, "Speeds up the animation when buying Bellway stations and calls the Bell Beast afterwards");
+        NoBellBeastSleep = config.Bind(BellwaySection, "BellBeast Always Awake", true, "Keeps the Bell Beast always awake");
+        BellBeastFreeWill = config.Bind(BellwaySection, "BellBeast Always Ready", false, "Makes the Bell Beast always ready at your location");
+        
+        FasterBeastlingCall = config.Bind(BellwaySection, "Faster Beastling Call", true, "Speeds up Beastling call performance and travel");
+        SkipBeastlingCallPerformance = config.Bind(BellwaySection, "Skip Beastling Call Performance", false, "Skips the Beastling call performance entirely");
 
-        SkipCutscene = config.Bind("Cutscene Settings", "Skip Cutscenes", true, "Skips cutscenes.");
-        SkipDreamCutscene = config.Bind("Cutscene Settings", "Skip Dream Cutscenes", true, "Skips dream cutscenes (Needolin & First Sinner).");
-        SkipDreamCutsceneFully = config.Bind("Cutscene Settings", "Fully Skip Dream Scenes", false, "Skips dream scenes entirely.");
-        SkipTutorialToolMsg = config.Bind("Cutscene Settings", "Skip Tool Pickup Tutorial", true, "Skips the first tool pickup tutorial.");
-        SkipWeakness = config.Bind("Cutscene Settings", "Skip Weakness", true, "Removes weakness scenes in Moss Grotto and the Cradle.");
+        FasterVentricaTravel = config.Bind(VentricaSection, "Faster Ventrica Travel Animation", true, "Speeds up arrival and departure animations for Ventrica travel");
+        FasterVentricaBuy = config.Bind(VentricaSection, "Faster Ventrica Purchase", true, "Speeds up the animation when buying Ventrica stations");
 
-        InstantLevers = config.Bind("Fast Settings", "Instant Levers", true, "Removes the delay when hitting a lever.");
-        InstantText = config.Bind("Fast Settings", "Instant Text", true, "Makes text scroll speed and popup speed instant.");
-        FasterLifts = config.Bind("Fast Settings", "Faster Lifts", true, "Makes lifts faster.");
-        FastUI = config.Bind("Fast Settings", "Fast Menu", true, "Removes the menu fade delay.");
-        SlowerOptions = config.Bind("Fast Settings", "Soften Fast Settings", false, "Makes some Fast Settings less extreme.");
+        FasterNPC = config.Bind(NPCSection, "Faster NPC", true, "Removes some introductory dialogue for NPCs");
+        FasterBossLoad = config.Bind(NPCSection, "Faster Boss Start", false, "Removes first-time events for bosses");
+        
+        OldFloat = config.Bind(OldPatchSection, "Drifters Cloak Override", false, "Re-adds float override input (Down + Jump)");
+        CloaklessClawline = config.Bind(OldPatchSection, "Cloakless Clawline", false, "Wall requiring the Drifter's Cloak in Underworks is now clingable");
+        OldVoltVessels = config.Bind(OldPatchSection, "Old Volt Vessels", false, "Allows Volt Vessels to be pogoed with tools");
+        BeastBoosts = config.Bind(OldPatchSection, "Beast Boosts", false, "The Beast's Crest Needle Art occasionally grants extra height");
+        PinPogo = config.Bind(OldPatchSection, "Pimpillo Pogo", false, "");
+        OldScuttlebrace = config.Bind(OldPatchSection, "Old Scuttlebrace", false, "Scuttlebrace Allows wall-jumping off unclingable walls");
+        OldMist = config.Bind(OldPatchSection, "Old Mist", false, "Enables room juggling in the Mist");
+        TrobbioSkip = config.Bind(OldPatchSection, "Trobbio Skip", false, "Allows tools to hit the slide platforms in the Whispering Vaults");
+        OldSkullTyrantLever = config.Bind(OldPatchSection, "Skull Tyrant Lever Skip", false, "Allows hitting the Skull Tyrant shortcut lever through the gate");
+        RemoveFaydownNeedolinCheck = config.Bind(OldPatchSection, "Faydown Cloak Without Needolin", false, "Allows getting the Faydown Cloak without the Needolin");
+        OldPutrifiedPlanks = config.Bind(OldPatchSection, "Old Putrified Ducts Planks", false, "Allows certain tools to break the planks between Bilewater and Putrified Ducts");
+
+        SkipCutscene = config.Bind(CutsceneSection, "Skip Cutscenes", true, "Skips cutscenes");
+        SkipDreamCutscene = config.Bind(CutsceneSection, "Skip Dream Cutscenes", true, "Skips dream cutscenes (Needolin & First Sinner)");
+        SkipDreamCutsceneFully = config.Bind(CutsceneSection, "Fully Skip Dream Scenes", false, "Skips dream scenes entirely");
+        SkipTutorialToolMsg = config.Bind(CutsceneSection, "Skip Tool Pickup Tutorial", true, "Skips the first tool pickup tutorial");
+        SkipWeakness = config.Bind(CutsceneSection, "Skip Weakness", true, "Removes weakness scenes");
+
+        InstantLevers = config.Bind(FastSection, "Instant Levers", true, "Removes the delay when hitting a lever");
+        InstantText = config.Bind(FastSection, "Instant Text", true, "Makes text scroll speed and popup speed instant");
+        FasterLifts = config.Bind(FastSection, "Faster Lifts", true, "Makes lifts faster");
+        FastUI = config.Bind(FastSection, "Fast Menu", true, "Removes the menu fade delay");
+        SlowerOptions = config.Bind(FastSection, "Soften Fast Settings", false, "Makes some Fast Settings less extreme");
     }
 }

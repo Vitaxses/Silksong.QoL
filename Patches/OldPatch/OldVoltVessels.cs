@@ -26,7 +26,7 @@ internal static class TinkEffectPatch
 
     static bool OverrideFlag6(bool orig, TinkEffect tink, GameObject obj)
     {
-        if (Configs.OldVoltVessels.Value && tink.gameObject.name.StartsWith("Lightning Bola Ball") && !obj.name.StartsWith("Harpoon"))
+        if (Configs.OldVoltVessels.Value && tink.gameObject.name.StartsWith("Lightning Bola Ball") && !obj.name.StartsWith("Harpoon") && !obj.name.Contains("DownSlash"))
             return false;
 
         return orig;

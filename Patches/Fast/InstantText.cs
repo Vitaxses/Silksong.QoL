@@ -13,3 +13,18 @@ internal static class DialogueBoxPatch
         __instance.animator.speed = Configs.SlowerOptions.Value ? 5f : 10f;
     }
 }
+
+[HarmonyPatch(typeof(DialogueYesNoBox), nameof(DialogueYesNoBox.Awake))]
+internal static class DialogueYesNoBoxPatch
+{
+    [HarmonyWrapSafe, HarmonyPostfix]
+    private static void Postfix_Awake(DialogueYesNoBox __instance)
+    {
+        if (!Configs.InstantText.Value)
+            return;
+
+        __instance.textRevealSpeed = 250f;
+        __instance.textRevealWait = 0;
+        __instance.animator.speed = 2f;
+    }
+}
