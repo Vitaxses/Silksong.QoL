@@ -41,20 +41,6 @@ A Quality of Life mod for Hollow Knight: Silksong
   + Putrified Ducts Planks
   + Skull Tyrant Lever Skip
 
-## Manual Installation
-
-1. Download and install [BepInEx](https://thunderstore.io/c/hollow-knight-silksong/p/BepInEx/BepInExPack_Silksong/).
-
-2. Then start the game and close it so that a plugins folder is generated in the BepInEx folder besides the game executable.
-
-3. Download the latest [QoL version](https://thunderstore.io/c/hollow-knight-silksong/p/Vitaxses/QoL/versions/) file.
-
-4. Download the latest [FsmUtil version](https://thunderstore.io/c/hollow-knight-silksong/p/silksong_modding/FsmUtil/) file.
-
-5. Extract the Zip files to the generated plugins folder.
-
-6. Launch the game.
-
 ## Issues
 
 If you encounter any issues or have a feature request, please create an issue on the [Issue Page](https://github.com/Vitaxses/Silksong.QoL/issues/new)
