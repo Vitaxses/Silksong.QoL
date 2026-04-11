@@ -17,12 +17,11 @@ internal static class FsmLiftControl
         Plugin.Logger.LogDebug("Modifying Lift FSM");
 
         // Default is 8
-        fsm.Fsm.GetFsmFloat("Speed")?.RawValue = 19f;
+        fsm.FindFloatVariable("Speed")!.RawValue = 20f;
 
-        float speedDown =  GameManager.instance.sceneName == "Room_Forge" ? -30f : -60f;
+        float speedDown =  GameManager.instance.sceneName == "Room_Forge" ? 30f : 31.40f;
         if (Configs.SlowerOptions.Value) speedDown *= 0.75f;
 
-        // Default is -39.02
-        fsm.Fsm.GetFsmFloat("Speed Down")?.RawValue = speedDown;
+        fsm.GetFirstActionOfType<SetFloatValue>("Init")!.floatValue = speedDown;
     }
 }
