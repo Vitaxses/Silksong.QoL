@@ -20,14 +20,20 @@ internal static class FasterNpc
             fsm.DisableActionsOfType<SetMeshRenderer>("Init");
             fsm.AddMethod("Init", (action) =>
             {
-                fsm.transform.position = new(30f, 10.57f, 0.006f);
-                fsm.transform.GetChild(0).position = new(31f, 10.57f, 0.006f);
+                fsm.transform.position = new(28f, 10.57f, 0.006f); // Lace
+                fsm.transform.GetChild(0).localPosition += new Vector3(-2f, 0f); // Cutscene trigger
             });
 
             fsm.DisableActionsOfType<HeroPlayLookUpAnim>("Look Up");
+            fsm.DisableActionsOfType<Wait>("Look Up");
             fsm.ChangeTransition("Look Up", FsmEvent.Finished.Name, "Wait");
             fsm.DisableActionsOfType<Wait>("Wait");
             fsm.ChangeTransition("Wait", FsmEvent.Finished.Name, "Jump Antic");
+            fsm.AddAction("Jump Antic", new Wait()
+            {
+                time = 0.1f,
+                finishEvent = FsmEvent.Finished
+            });
 
             fsm.DisableActionsOfType<Wait>("Wait");
 
