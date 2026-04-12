@@ -44,7 +44,8 @@ internal static class FsmCutscene
         else if (fsm is { FsmName: "Sequence", name: "Boss Scene", gameObject.scene.name: "Cog_Dancers"})
         {
             var coreTransform = fsm.transform.GetChild(12);
-            coreTransform.GetComponent<Animator>().speed = 3f; // Core Rotator
+            coreTransform.GetComponent<Animator>().speed = 4f; // Core Rotator
+            fsm.DisableActionsOfType<Wait>("Lift Inspect Wait");
 
             coreTransform.GetChild(1).GetChild(2).GetChild(9).GetComponent<Animator>().speed = 5f; // Birdcage
 
