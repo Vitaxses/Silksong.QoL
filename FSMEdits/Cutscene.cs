@@ -1,4 +1,6 @@
-﻿namespace QoL.FSMEdits;
+﻿using GlobalEnums;
+
+namespace QoL.FSMEdits;
 
 internal static class FsmCutscene
 {
@@ -179,8 +181,27 @@ internal static class FsmCutscene
         fsm.ChangeTransition("State 1", "FINISH ENTRY", "Fade In");
         fsm.GetFirstActionOfType<ScreenFader>("Fade In")!.duration = 0.5f;
         fsm.GetFirstActionOfType<Wait>("Fade In")!.time = 0.5f;
-        fsm.ChangeTransition("Fade In", FsmEvent.Finished.Name, "End");
+        fsm.ChangeTransition("Fade In", FsmEvent.Finished.Name, "Give Control");
 
         fsm.DisableActions("State 1", 2, 3, 4);
+    }
+
+    internal static void SmallCutscenes(PlayMakerFSM fsm)
+    {
+        if (!Configs.SkipCutscene.Value)
+            return;
+
+        if (fsm is { FsmName: "Behaviour", name: "Pinstress Interior Ground Sit" } 
+            || (fsm.FsmName == "Dialogue" && (fsm.name == "Plinney Inside" || fsm.name == "Doctor Fly")))
+        {
+            fsm.GetState("Cinematic")!.AddAction(new Wait()
+            {
+                time = 1f,
+            });
+            fsm.GetState("Cinematic")!.AddMethod(_ =>
+            {
+                InputHandler.Instance.SetSkipMode(SkipPromptMode.SKIP_INSTANT);
+            });
+        }
     }
 }
