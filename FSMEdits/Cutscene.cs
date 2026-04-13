@@ -141,6 +141,12 @@ internal static class FsmCutscene
             fsm.GetState("Get Up")!.AddMethod((action) =>
             {
                 HeroController.instance.RegainControl();
+                if (!HudCanvas.IsVisible) {
+                    // Why TC
+                    HudCanvas canvas = HudCanvas.instance;
+                    canvas.targetFsm.SendEvent("IN");
+                    FSMUtility.SendEventToGameObject(canvas.gameObject, "INVENTORY OPEN COMPLETE", true);
+                }
             });
         }
 
