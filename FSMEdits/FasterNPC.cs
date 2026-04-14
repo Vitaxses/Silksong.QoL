@@ -17,11 +17,12 @@ internal static class FasterNpc
         
         else if (fsm is { FsmName: "Control", name: "Lace NPC Citadel Meet" })
         {
+            bool MistEntrance = fsm.gameObject.scene.name == "Song_20";
             fsm.DisableActionsOfType<SetMeshRenderer>("Init");
             fsm.AddMethod("Init", (action) =>
             {
-                fsm.transform.position = new(28f, 10.57f, 0.006f); // Lace
-                fsm.transform.GetChild(0).localPosition += new Vector3(-2f, 0f); // Cutscene trigger
+                fsm.transform.position += MistEntrance ? new(5.86f, 0f, 0f) : new(-6f, 0f, 0f); // Lace pos
+                if (MistEntrance) fsm.transform.GetChild(0).localPosition += new Vector3(-2f, 0f); // Cutscene trigger
             });
 
             fsm.DisableActionsOfType<HeroPlayLookUpAnim>("Look Up");
