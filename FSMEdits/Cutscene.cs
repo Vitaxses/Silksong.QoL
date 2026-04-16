@@ -37,8 +37,14 @@ internal static class FsmCutscene
 
             if (PlayerData.instance.encounteredLaceTower)
             {
-                fsm.GetState("Lift Already Here")!.GetFirstActionOfType<SendEventToRegister>()!.eventName = "BATTLE START REFIGHT";
+                fsm.GetFirstActionOfType<SendEventToRegister>("Lift Already Here")!.eventName = "BATTLE START REFIGHT";
             }
+
+            fsm.InsertMethod("Lift Already Here", 0, _ => // Fix audio cutting out
+            {
+                GameManager.instance.actorSnapshotUnpaused.TransitionToSafe(0f);
+			    GameManager.instance.ui.AudioGoToGameplay(0.2f);
+            });
 
             fsm.GetState("Hero Control")!.GetFirstActionOfType<PlayerDataVariableTest>()!.Enabled = PlayerData.instance.laceTowerDoorOpened;
         }
