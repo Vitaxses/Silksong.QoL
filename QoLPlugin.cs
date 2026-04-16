@@ -41,12 +41,32 @@ public sealed partial class QoLPlugin : BaseUnityPlugin, IModMenuCustomMenu
 
         foreach (var section in sectionEntries)
         {
+            if (section.Key == Configs.NPCIntroSection)
+                continue;
+
             var sectionBuilder = new PaginatedMenuScreenBuilder(section.Key, 8);
 
             foreach (var entry in section)
             {
                 if (factory.GenerateMenuElement(entry.Value, out MenuElement? element))
                     sectionBuilder.Add(element);
+            }
+
+            if (section.Key == Configs.NPCSection)
+            {
+                var text = LocalizedText.Raw(Configs.NPCIntroSection);
+                var npcIntroSectionBuilder = new PaginatedMenuScreenBuilder(text, 8);
+                foreach (var entry in sectionEntries.First(c => c.Key == Configs.NPCIntroSection))
+                {
+                    if (factory.GenerateMenuElement(entry.Value, out MenuElement? element))
+                        npcIntroSectionBuilder.Add(element);
+                }
+                
+                var introButton = new TextButton(text)
+                {
+                    OnSubmit = () => MenuScreenNavigation.Show(npcIntroSectionBuilder.Build(), HistoryMode.Add)
+                };
+                sectionBuilder.Add(introButton);
             }
 
             var sectionMenu = sectionBuilder.Build();

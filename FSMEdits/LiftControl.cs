@@ -11,17 +11,30 @@ internal static class FsmLiftControl
 
     internal static void Lift(PlayMakerFSM fsm)
     {
-        if (!Configs.FasterLifts.Value || !IsInLiftScene(fsm) || fsm is not { FsmName: "Lift Control"})
+        Configs.LiftSpeed liftSpeed = Configs.FasterLifts.Value;
+        if (liftSpeed == Configs.LiftSpeed.Vanilla || !IsInLiftScene(fsm) || fsm is not { FsmName: "Lift Control"})
             return;
 
         Plugin.Logger.LogDebug("Modifying Lift FSM");
 
         // Default is 8
-        fsm.FindFloatVariable("Speed")!.RawValue = 20f;
+        float speed = 0;
+        float speedDown = 0;
+        if (liftSpeed == Configs.LiftSpeed.SlightlyFaster)
+        {
+            speed = 16;
+            speedDown = 16;
+        } else if (liftSpeed == Configs.LiftSpeed.Fast)
+        {
+            speed = 19;
+            speedDown = 31.40f;
+        } else if (liftSpeed == Configs.LiftSpeed.VeryFast)
+        {
+            speed = 21;
+            speedDown = 31.40f;
+        }
 
-        float speedDown =  GameManager.instance.sceneName == "Room_Forge" ? 30f : 31.40f;
-        if (Configs.SlowerOptions.Value) speedDown *= 0.75f;
-
+        fsm.FindFloatVariable("Speed")!.Value = speed;
         fsm.GetFirstActionOfType<SetFloatValue>("Init")!.floatValue = speedDown;
     }
 }
