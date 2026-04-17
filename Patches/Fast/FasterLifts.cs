@@ -7,14 +7,24 @@ internal static class LiftControlPatch
     private static void Postfix_Start(LiftControl __instance)
     {
         string sceneName = __instance.gameObject.scene.name;
-        if (!Configs.FasterLifts.Value || sceneName == "Ward_01")
+        Configs.LiftSpeed liftSpeed = Configs.FasterLifts.Value;
+
+        if (liftSpeed == Configs.LiftSpeed.Vanilla || sceneName == "Ward_01")
             return;
 
-        __instance.moveSpeed = 25f;
+        __instance.moveSpeed = 28f; // Trobbio Underworks lift
 
         if (sceneName != "Library_11")
         {
-            __instance.moveSpeed = Configs.SlowerOptions.Value ? 35 : 75;
+            float speed = 0;
+            if (liftSpeed == Configs.LiftSpeed.SlightlyFaster)
+                speed = 35;
+            else if (liftSpeed == Configs.LiftSpeed.Fast)
+                speed = 75;
+            else if (liftSpeed == Configs.LiftSpeed.VeryFast)
+                speed = 90;
+
+            __instance.moveSpeed = speed;
         }
         
         __instance.moveDelay = 0f;
@@ -28,10 +38,19 @@ internal static class ManualLiftPatch
     [HarmonyWrapSafe, HarmonyPostfix]
     private static void Postfix_Start(ManualLift __instance)
     {
-        if (!Configs.FasterLifts.Value)
+        Configs.LiftSpeed liftSpeed = Configs.FasterLifts.Value;
+        if (liftSpeed == Configs.LiftSpeed.Vanilla)
             return;
 
-        __instance.moveSpeed = Configs.SlowerOptions.Value ? 40 : 55;
+        float speed = __instance.moveSpeed;
+        if (liftSpeed == Configs.LiftSpeed.SlightlyFaster)
+            speed *= 2;
+        else if (liftSpeed == Configs.LiftSpeed.Fast)
+            speed = 55;
+        else if (liftSpeed == Configs.LiftSpeed.VeryFast)
+            speed = 75;
+
+        __instance.moveSpeed = speed;
         __instance.acceleration = 12f;
         __instance.moveDelay = 0f;
     }

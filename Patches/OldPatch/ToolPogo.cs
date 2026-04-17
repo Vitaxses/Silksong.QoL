@@ -26,8 +26,22 @@ internal static class TinkEffectPatch
 
     static bool OverrideFlag6(bool orig, TinkEffect tink, GameObject obj)
     {
-        if (Configs.OldVoltVessels.Value && tink.gameObject.name.StartsWith("Lightning Bola Ball") && !obj.name.StartsWith("Harpoon") && !obj.name.Contains("DownSlash"))
-            return false;
+        //Plugin.Logger.LogDebug("TryDoTinkReactionNoDamager: orig: " + orig + " | Tink: " + tink.name + " | " + obj.name);
+
+        if (Configs.OldDelversDrillSnareSetter.Value && (obj.name == "Screw Attack Damager" || obj.name == "Snare Loop Damager"))
+        {
+            if (tink.name.StartsWith("Lightning Bola Ball"))
+                return false;
+
+            if (tink.name == "Pollen Shot(Clone)")
+                return false;
+
+            if (tink.name == "Sprite" && tink.transform.parent != null && tink.transform.parent.name == "Hero Conch Projectile(Clone)")
+                return false;
+
+            if (tink.name == "Throwing Bell(Clone)")
+                return false;
+        }
 
         return orig;
     }

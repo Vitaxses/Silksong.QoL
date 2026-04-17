@@ -17,6 +17,14 @@ internal static class DreamCutscene
             fsm.GetState("To Memory Scene")!.GetFirstActionOfType<BeginSceneTransition>()!.sceneName = fsm.gameObject.scene.name;
         }
 
+        if (fsm is { FsmName: "Wake Up", name: "door_wakeOnGround", gameObject.scene.name: "Belltown_Shrine" })
+        {
+            fsm.AddMethod("Regain Control", _ =>
+            {
+                PlayerData.instance.disableInventory = false;
+            });
+        }
+
         if (fsm.gameObject.scene.name != "Memory_Needolin")
             return;
 

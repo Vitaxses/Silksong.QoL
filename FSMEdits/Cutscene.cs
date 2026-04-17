@@ -1,4 +1,6 @@
-﻿namespace QoL.FSMEdits;
+﻿using GlobalEnums;
+
+namespace QoL.FSMEdits;
 
 internal static class FsmCutscene
 {
@@ -35,8 +37,14 @@ internal static class FsmCutscene
 
             if (PlayerData.instance.encounteredLaceTower)
             {
-                fsm.GetState("Lift Already Here")!.GetFirstActionOfType<SendEventToRegister>()!.eventName = "BATTLE START REFIGHT";
+                fsm.GetFirstActionOfType<SendEventToRegister>("Lift Already Here")!.eventName = "BATTLE START REFIGHT";
             }
+
+            fsm.InsertMethod("Lift Already Here", 0, _ => // Fix audio cutting out
+            {
+                GameManager.instance.actorSnapshotUnpaused.TransitionToSafe(0f);
+			    GameManager.instance.ui.AudioGoToGameplay(0.2f);
+            });
 
             fsm.GetState("Hero Control")!.GetFirstActionOfType<PlayerDataVariableTest>()!.Enabled = PlayerData.instance.laceTowerDoorOpened;
         }
@@ -44,7 +52,8 @@ internal static class FsmCutscene
         else if (fsm is { FsmName: "Sequence", name: "Boss Scene", gameObject.scene.name: "Cog_Dancers"})
         {
             var coreTransform = fsm.transform.GetChild(12);
-            coreTransform.GetComponent<Animator>().speed = 3f; // Core Rotator
+            coreTransform.GetComponent<Animator>().speed = 4f; // Core Rotator
+            fsm.DisableActionsOfType<Wait>("Lift Inspect Wait");
 
             coreTransform.GetChild(1).GetChild(2).GetChild(9).GetComponent<Animator>().speed = 5f; // Birdcage
 
@@ -138,6 +147,12 @@ internal static class FsmCutscene
             fsm.GetState("Get Up")!.AddMethod((action) =>
             {
                 HeroController.instance.RegainControl();
+                if (!HudCanvas.IsVisible) {
+                    // Why TC
+                    HudCanvas canvas = HudCanvas.instance;
+                    canvas.targetFsm.SendEvent("IN");
+                    FSMUtility.SendEventToGameObject(canvas.gameObject, "INVENTORY OPEN COMPLETE", true);
+                }
             });
         }
 
@@ -178,8 +193,27 @@ internal static class FsmCutscene
         fsm.ChangeTransition("State 1", "FINISH ENTRY", "Fade In");
         fsm.GetFirstActionOfType<ScreenFader>("Fade In")!.duration = 0.5f;
         fsm.GetFirstActionOfType<Wait>("Fade In")!.time = 0.5f;
-        fsm.ChangeTransition("Fade In", FsmEvent.Finished.Name, "End");
+        fsm.ChangeTransition("Fade In", FsmEvent.Finished.Name, "Give Control");
 
         fsm.DisableActions("State 1", 2, 3, 4);
+    }
+
+    internal static void SmallCutscenes(PlayMakerFSM fsm)
+    {
+        if (!Configs.SkipCutscene.Value)
+            return;
+
+        if (fsm is { FsmName: "Behaviour", name: "Pinstress Interior Ground Sit" } 
+            || (fsm.FsmName == "Dialogue" && (fsm.name == "Plinney Inside" || fsm.name == "Doctor Fly")))
+        {
+            fsm.GetState("Cinematic")!.AddAction(new Wait()
+            {
+                time = 1f,
+            });
+            fsm.GetState("Cinematic")!.AddMethod(_ =>
+            {
+                InputHandler.Instance.SetSkipMode(SkipPromptMode.SKIP_INSTANT);
+            });
+        }
     }
 }
