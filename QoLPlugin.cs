@@ -46,22 +46,6 @@ public sealed partial class QoLPlugin : BaseUnityPlugin, IModMenuCustomMenu
 
             var sectionBuilder = new PaginatedMenuScreenBuilder(section.Key, 8);
 
-            if (section.Key == Configs.OldPatchSection)
-            {
-                var toolPogoBuilder = new PaginatedMenuScreenBuilder(LocalizedText.Raw("Old Patch " + Configs.ToolPogoSection), 8);
-                foreach (var entry in sectionEntries.First(c => c.Key == Configs.ToolPogoSection))
-                {
-                    if (factory.GenerateMenuElement(entry.Value, out MenuElement? element))
-                        toolPogoBuilder.Add(element);
-                }
-                
-                var introButton = new TextButton(LocalizedText.Raw(Configs.ToolPogoSection))
-                {
-                    OnSubmit = () => MenuScreenNavigation.Show(toolPogoBuilder.Build(), HistoryMode.Add)
-                };
-                sectionBuilder.Add(introButton);
-            }
-
             foreach (var entry in section)
             {
                 if (factory.GenerateMenuElement(entry.Value, out MenuElement? element))
@@ -80,6 +64,22 @@ public sealed partial class QoLPlugin : BaseUnityPlugin, IModMenuCustomMenu
                 var introButton = new TextButton(LocalizedText.Raw(Configs.NPCIntroSection))
                 {
                     OnSubmit = () => MenuScreenNavigation.Show(npcIntroSectionBuilder.Build(), HistoryMode.Add)
+                };
+                sectionBuilder.Add(introButton);
+            }
+
+            if (section.Key == Configs.OldPatchSection)
+            {
+                var toolPogoBuilder = new PaginatedMenuScreenBuilder(LocalizedText.Raw("Old Patch " + Configs.ToolPogoSection), 8);
+                foreach (var entry in sectionEntries.First(c => c.Key == Configs.ToolPogoSection))
+                {
+                    if (factory.GenerateMenuElement(entry.Value, out MenuElement? element))
+                        toolPogoBuilder.Add(element);
+                }
+                
+                var introButton = new TextButton(LocalizedText.Raw(Configs.ToolPogoSection))
+                {
+                    OnSubmit = () => MenuScreenNavigation.Show(toolPogoBuilder.Build(), HistoryMode.Add)
                 };
                 sectionBuilder.Add(introButton);
             }
