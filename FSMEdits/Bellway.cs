@@ -21,16 +21,6 @@ internal static class Bellway
             // TC made AudioPlayInState (index 6) does block finish so we can't directly disable it here
             fsm.GetAction<Wait>("Travel Arrive Start", 7)!.time = 0f;
 
-            // HUD Fix
-            fsm.AddMethod("Wait Finished Entering", (_) => {
-                if (!HudCanvas.IsVisible) {
-                    // Why TC
-                    HudCanvas canvas = HudCanvas.instance;
-                    canvas.targetFsm.SendEvent("IN");
-                    FSMUtility.SendEventToGameObject(canvas.gameObject, "INVENTORY OPEN COMPLETE", true);
-                }
-            });
-
             // Fast departure
             fsm.GetAction<ScreenFader>("Hero Jump", 0)!.duration = 0.25f;
             fsm.DisableAction("Hero Jump", 5);
@@ -39,6 +29,16 @@ internal static class Bellway
             // Don't sing on first entrance in range
             fsm.ChangeTransition("First Enter?", FsmEvent.Finished.Name, "Idle");
         }
+            
+        // So for some reason even if every bellway config is off the hud still doesnt works
+        fsm.AddMethod("Wait Finished Entering", (_) => {
+            if (!HudCanvas.IsVisible) {
+                // Why TC
+                HudCanvas canvas = HudCanvas.instance;
+                canvas.targetFsm.SendEvent("IN");
+                FSMUtility.SendEventToGameObject(canvas.gameObject, "INVENTORY OPEN COMPLETE", true);
+            }
+        });
 
         if (Configs.BellBeastFreeWill.Value)
         {
