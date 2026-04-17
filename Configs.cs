@@ -26,11 +26,13 @@ public static class Configs
 
     public static ConfigEntry<bool> FasterBossLoad { get; private set; } = null!;
 
+    public static ConfigEntry<bool> PinPogo { get; private set; } = null!;
+    public static ConfigEntry<bool> OldDelversDrillSnareSetter { get; private set; } = null!;
+
     public static ConfigEntry<bool> OldFloat { get; private set; } = null!;
     public static ConfigEntry<bool> CloaklessClawline { get; private set; } = null!;
     public static ConfigEntry<bool> OldVoltVessels { get; private set; } = null!;
     public static ConfigEntry<bool> BeastBoosts { get; private set; } = null!;
-    public static ConfigEntry<bool> PinPogo { get; private set; } = null!;
     public static ConfigEntry<bool> OldScuttlebrace { get; private set; } = null!;
     public static ConfigEntry<bool> OldMist { get; private set; } = null!;
     public static ConfigEntry<bool> TrobbioSkip { get; private set; } = null!;
@@ -54,8 +56,9 @@ public static class Configs
     public const string BellwaySection = "Bellway Modules";
     public const string VentricaSection = "Ventrica Modules";
     public const string NPCSection = "NPC Modules";
-    public const string NPCIntroSection = "NPC Intro Modules";
+    public const string NPCIntroSection = "Intro Modules";
     public const string OldPatchSection = "Old Patch Modules";
+    public const string ToolPogoSection = "Pogo Modules";
     public const string CutsceneSection = "Cutscene Modules";
     public const string FastSection = "Fast Modules";
 
@@ -84,14 +87,15 @@ public static class Configs
 
         FasterBossLoad = config.Bind(NPCSection, "Faster Boss Start", false, "Removes first-time events for bosses");
         
+        PinPogo = config.Bind(ToolPogoSection, "Pimpillo Pogo", false, "");
+        OldDelversDrillSnareSetter = config.Bind(ToolPogoSection, "Old Delvers Drill & Snare Setter", false, "");
+
         OldFloat = config.Bind(OldPatchSection, "Drifters Cloak Override", false, "Re-adds float override input (Down + Jump)");
         CloaklessClawline = config.Bind(OldPatchSection, "Cloakless Clawline", false, "Wall requiring the Drifter's Cloak in Underworks is now clingable");
-        OldVoltVessels = config.Bind(OldPatchSection, "Old Volt Vessels", false, "Allows Volt Vessels to be pogoed with tools");
         BeastBoosts = config.Bind(OldPatchSection, "Beast Boosts", false, "The Beast's Crest Needle Art occasionally grants extra height");
-        PinPogo = config.Bind(OldPatchSection, "Pimpillo Pogo", false, "");
         OldScuttlebrace = config.Bind(OldPatchSection, "Old Scuttlebrace", false, "Scuttlebrace Allows wall-jumping off unclingable walls");
         OldMist = config.Bind(OldPatchSection, "Old Mist", false, "Enables room juggling in the Mist");
-        TrobbioSkip = config.Bind(OldPatchSection, "Trobbio Skip", false, "Allows tools to hit the slide platforms in the Whispering Vaults");
+        TrobbioSkip = config.Bind(OldPatchSection, "Trobbio Skip", false, "Allows tools to hit the slide platforms in Whispering Vaults");
         OldSkullTyrantLever = config.Bind(OldPatchSection, "Skull Tyrant Lever Skip", false, "Allows hitting the Skull Tyrant shortcut lever through the gate");
         RemoveFaydownNeedolinCheck = config.Bind(OldPatchSection, "Faydown Cloak Without Needolin", false, "Allows getting the Faydown Cloak without the Needolin");
         OldPutrifiedPlanks = config.Bind(OldPatchSection, "Old Putrified Ducts Planks", false, "Allows certain tools to break the planks between Bilewater and Putrified Ducts");
