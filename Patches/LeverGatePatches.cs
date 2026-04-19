@@ -8,6 +8,11 @@ internal static class LeverPatch
     {
         if (Configs.InstantLevers.Value)
             __instance.openGateDelay = 0f;
+
+        if (Configs.LeverSkips.Value && __instance.gameObject.name.StartsWith("Understore Lever") && GameManager.instance.sceneName == "Ward_01" )
+        {
+            __instance.canHitTrigger = null;
+        }
     }
 }
 
@@ -33,9 +38,9 @@ internal static class Lever_tk2dPatch
         if (Configs.InstantLevers.Value)
             __instance.openGateDelay = 0f;
 
-        if (Configs.OldSkullTyrantLever.Value && __instance.gameObject is { name: "Song_lever_side", scene.name: "Bone_10" })
+        if (Configs.LeverSkips.Value && __instance.gameObject is { name: "Song_lever_side", scene.name: "Bone_10" })
         {
-            __instance.transform.GetChild(2).GetComponent<BoxCollider2D>().offset = new(-4.5f, 2.77f); // Can Hit Range
+            __instance.transform.GetChild(2).transform.position = new (96.4f, 30.11f, 0.005f);
         }
     }
 }

@@ -36,7 +36,7 @@ public static class Configs
     public static ConfigEntry<bool> OldScuttlebrace { get; private set; } = null!;
     public static ConfigEntry<bool> OldMist { get; private set; } = null!;
     public static ConfigEntry<bool> TrobbioSkip { get; private set; } = null!;
-    public static ConfigEntry<bool> OldSkullTyrantLever { get; private set; } = null!;
+    public static ConfigEntry<bool> LeverSkips { get; private set; } = null!;
     public static ConfigEntry<bool> RemoveFaydownNeedolinCheck { get; private set; } = null!;
     public static ConfigEntry<bool> OldPutrifiedPlanks { get; private set; } = null!;
 
@@ -96,7 +96,7 @@ public static class Configs
         OldScuttlebrace = config.Bind(OldPatchSection, "Old Scuttlebrace", false, "Scuttlebrace Allows wall-jumping off unclingable walls");
         OldMist = config.Bind(OldPatchSection, "Old Mist", false, "Enables room juggling in the Mist");
         TrobbioSkip = config.Bind(OldPatchSection, "Trobbio Skip", false, "Allows tools to hit the slide platforms in Whispering Vaults");
-        OldSkullTyrantLever = config.Bind(OldPatchSection, "Skull Tyrant Lever Skip", false, "Allows hitting the Skull Tyrant shortcut lever through the gate");
+        LeverSkips = config.Bind(OldPatchSection, "Lever Skips", false, "Allows certain levers to be hit through walls");
         RemoveFaydownNeedolinCheck = config.Bind(OldPatchSection, "Faydown Cloak Without Needolin", false, "Allows getting the Faydown Cloak without the Needolin");
         OldPutrifiedPlanks = config.Bind(OldPatchSection, "Old Putrified Ducts Planks", false, "Allows certain tools to break the planks between Bilewater and Putrified Ducts");
 
