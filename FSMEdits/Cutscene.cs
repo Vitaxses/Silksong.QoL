@@ -200,6 +200,7 @@ internal static class FsmCutscene
 
     internal static void SmallCutscenes(PlayMakerFSM fsm)
     {
+        /*
         if (!Configs.SkipCutscene.Value)
             return;
 
@@ -208,12 +209,12 @@ internal static class FsmCutscene
         {
             fsm.GetState("Cinematic")!.AddAction(new Wait()
             {
-                time = 1f,
+                time = 2.5f,
             });
             fsm.GetState("Cinematic")!.AddMethod(_ =>
             {
                 InputHandler.Instance.SetSkipMode(SkipPromptMode.SKIP_INSTANT);
             });
-        }
+        }*/
     }
 }

@@ -30,7 +30,7 @@ internal static class FsmLiftControl
             speedDown = 31.40f;
         } else if (liftSpeed == Configs.LiftSpeed.VeryFast)
         {
-            speed = 21;
+            speed = fsm.gameObject.scene.name == "Bonetown" ? 28 : 21;
             speedDown = 31.40f;
         }
 
